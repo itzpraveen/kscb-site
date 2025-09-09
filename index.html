@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kuzhimanna Service Co-operative Bank</title>
+    <meta name="description" content="Kuzhimanna Service Co-operative Bank – community-first banking with secure deposits, quick loans, and modern digital services." />
+    <meta name="theme-color" content="#0b7a5f" />
+    <meta property="og:title" content="Kuzhimanna Service Co-operative Bank" />
+    <meta property="og:description" content="Community-first banking. Secure. Fast. Trusted." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/img/logo.png" />
+    <link rel="icon" type="image/png" href="assets/img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header" role="banner">
+      <div class="container nav">
+        <a href="#home" class="brand" aria-label="Kuzhimanna Service Co-operative Bank home">
+          <img src="assets/img/logo.png" alt="Kuzhimanna Service Co-operative Bank logo" width="36" height="36" />
+          <span class="brand-text">
+            <strong>Kuzhimanna</strong> Service Co‑operative Bank
+          </span>
+        </a>
+
+        <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+
+        <nav id="primary-nav" class="nav-links" role="navigation" aria-label="Primary">
+          <a href="#products">Products</a>
+          <a href="#services">Services</a>
+          <a href="#branches">Branches</a>
+          <a href="#activities">Community</a>
+          <a href="#notices">Notices</a>
+          <a href="#contact" class="btn btn-sm btn-primary">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content">
+      <section id="home" class="section hero">
+        <div class="container grid-2">
+          <div class="hero-copy">
+            <h1>Banking that’s local, digital, and trusted.</h1>
+            <p class="lead">Serving our community with secure deposits, quick loans, and modern digital banking. Simple, transparent, and people-first.</p>
+            <div class="actions">
+              <a href="#products" class="btn btn-primary">Explore Products</a>
+              <a href="#contact" class="btn btn-outline">Get in Touch</a>
+            </div>
+            <ul class="badges">
+              <li>Secure & compliant</li>
+              <li>Quick processing</li>
+              <li>Friendly service</li>
+            </ul>
+          </div>
+          <div class="hero-card">
+            <div class="card stat">
+              <div class="stat-value" id="stat-members">10,000+</div>
+              <div class="stat-label">Happy Members</div>
+            </div>
+            <div class="card highlight">
+              <h3>Featured</h3>
+              <p>Attractive deposit rates and flexible loan options tailored to your needs.</p>
+              <a href="#deposits" class="link">Check rates →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="products" class="section" data-animate>
+        <div class="container">
+          <header class="section-header">
+            <h2>Products & Services</h2>
+            <p>Solutions for saving, borrowing, and transacting every day.</p>
+          </header>
+          <div class="grid-3 cards">
+            <article class="card">
+              <h3>Deposits</h3>
+              <p>Savings, Current, Fixed Deposit, Recurring Deposit, and Daily Deposit (Pigmy) accounts with competitive returns.</p>
+              <ul class="tick">
+                <li>Instant account opening guidance</li>
+                <li>Passbook & statements</li>
+                <li>Nomination facility</li>
+              </ul>
+              <a href="#deposits" class="btn btn-light">View deposit options</a>
+            </article>
+            <article class="card">
+              <h3>Loans</h3>
+              <p>Quick processing loans for personal, home, vehicle, agriculture, MSME, and gold loans.</p>
+              <ul class="tick">
+                <li>Transparent eligibility</li>
+                <li>Flexible repayment</li>
+                <li>Minimal documentation</li>
+              </ul>
+              <a href="#loans" class="btn btn-light">Explore loans</a>
+            </article>
+            <article class="card">
+              <h3>Digital Banking</h3>
+              <p>IMPS/NEFT/RTGS, UPI readiness, SMS alerts, and account services at your fingertips.</p>
+              <ul class="tick">
+                <li>Fast domestic transfers</li>
+                <li>Account alerts</li>
+                <li>Supportive onboarding</li>
+              </ul>
+              <a href="#digital" class="btn btn-light">See digital services</a>
+            </article>
+            <article class="card">
+              <h3>Services</h3>
+              <p>Safe locker facility and branch services for your convenience.</p>
+              <ul class="tick">
+                <li>Safe deposit lockers</li>
+                <li>Account & statement services</li>
+                <li>Guidance & support</li>
+              </ul>
+              <a href="#services" class="btn btn-light">Explore services</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="deposits" class="section alt" data-animate>
+        <div class="container">
+          <header class="section-header">
+            <h2>Deposit Accounts</h2>
+            <p>Smart ways to save and grow your money.</p>
+          </header>
+          <div id="deposits-grid" class="grid-3 cards"><!-- Populated by JS --></div>
+          <div class="note">
+            <strong>Note:</strong> Interest rates and terms are indicative. Please contact the branch for latest details.
+          </div>
+        </div>
+      </section>
+
+      <section id="loans" class="section" data-animate>
+        <div class="container">
+          <header class="section-header">
+            <h2>Loans & Credit</h2>
+            <p>Flexible loans with quick processing and transparent terms.</p>
+          </header>
+          <div id="loans-grid" class="grid-3 cards"><!-- Populated by JS --></div>
+        </div>
+      </section>
+
+      <section id="digital" class="section alt" data-animate>
+        <div class="container">
+          <header class="section-header">
+            <h2>Digital Banking</h2>
+            <p>Convenient, secure, and built around you.</p>
+          </header>
+          <div class="grid-3 cards">
+            <article class="card">
+              <h3>IMPS / NEFT / RTGS</h3>
+              <p>Fast domestic fund transfers during banking hours and beyond.</p>
+            </article>
+            <article class="card">
+              <h3>UPI Ready</h3>
+              <p>UPI payments and collections support (subject to availability).</p>
+            </article>
+            <article class="card">
+              <h3>Alerts & Services</h3>
+              <p>SMS/Email alerts, statements, and account services.</p>
+            </article>
+          </div>
+          <div class="note">
+            For onboarding and digital services, please visit the branch or contact support.
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section" data-animate>
+        <div class="container">
+          <header class="section-header">
+            <h2>Services & Facilities</h2>
+            <p>Useful facilities to secure valuables and simplify banking.</p>
+          </header>
+          <div class="grid-3 cards">
+            <article class="card">
+              <h3>Safe Locker Facility</h3>
+              <p>Secure storage for your valuables with branch‑managed lockers.</p>
+              <ul class="tick">
+                <li>Multiple locker sizes</li>
+                <li>Allotment subject to availability</li>
+                <li>Annual rent as per category</li>
+              </ul>
+            </article>
+          </div>
+          <div class="note">
+            Locker availability varies by branch. Please contact us for allotment and charges.
+          </div>
+        </div>
+      </section>
+
+      <section id="rates" class="section" data-animate>
+        <div class="container">
+          <header class="section-header">
+            <h2>Rates & Charges</h2>
+            <p>Indicative deposit interest and key charges. Contact branch for official rates.</p>
+          </header>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Fixed Deposit (Indicative)</h3>
+              <div id="rates-effective" class="muted small"></div>
+              <div class="table-wrap">
+                <table class="table" id="rates-table" aria-label="Fixed Deposit Rates">
+                  <thead>
+                    <tr>
+                      <th scope="col">Tenure</th>
+                      <th scope="col">General</th>
+                      <th scope="col">Senior Citizen</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Populated by JS -->
+                  </tbody>
+                </table>
+              </div>
+              <div id="rates-note" class="note small"></div>
+            </div>
+            <div class="card">
+              <h3>Service Charges (Snapshot)</h3>
+              <ul class="tick" id="charges-list"><!-- Populated by JS --></ul>
+              <p class="muted tiny">Detailed charges vary by product and may change without prior notice.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="notices" class="section" data-animate>
+        <div class="container">
+          <header class="section-header">
+            <h2>Announcements & Notices</h2>
+            <p>Keep up with the latest updates from the Bank.</p>
+          </header>
+          <ul class="notices" id="notice-list" aria-live="polite">
+            <!-- Populated by JS -->
+          </ul>
+          <div class="note small">For detailed circulars and tenders, please contact the branch.</div>
+        </div>
+      </section>
+
+      <section id="activities" class="section alt" data-animate>
+        <div class="container">
+          <header class="section-header">
+            <h2>Activities</h2>
+            <p>Programs, camps, and community engagements.</p>
+          </header>
+          <div id="activities-list" class="grid-3 cards"><!-- Populated by JS --></div>
+        </div>
+      </section>
+
+      <section id="gallery" class="section" data-animate>
+        <div class="container">
+          <header class="section-header">
+            <h2>Gallery</h2>
+            <p>Moments from our branch and community.</p>
+          </header>
+          <div id="gallery-grid" class="gallery-grid"><!-- Populated by JS --></div>
+        </div>
+      </section>
+
+      <section id="about" class="section alt" data-animate>
+        <div class="container grid-2">
+          <div>
+            <header class="section-header left">
+              <h2>About the Bank</h2>
+            </header>
+            <p>
+              Kuzhimanna Service Co‑operative Bank is a community‑focused institution committed to
+              inclusive growth, financial literacy, and member prosperity. We combine trust and
+              personal attention with modern services and responsible banking practices.
+            </p>
+            <ul class="tick">
+              <li>Member‑owned, community‑first governance</li>
+              <li>Transparent products and pricing</li>
+              <li>Support for local development</li>
+            </ul>
+          </div>
+          <div class="card soft">
+            <h3>Key Information</h3>
+            <dl class="kv">
+              <dt>IFSC</dt>
+              <dd>To be updated</dd>
+              <dt>MICR</dt>
+              <dd>To be updated</dd>
+              <dt>Branch Hours</dt>
+              <dd>Mon–Sat, 10:00–16:00 (as per local rules)</dd>
+            </dl>
+            <p class="muted small">Please verify timings during public holidays.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="branches" class="section" data-animate>
+        <div class="container">
+          <header class="section-header">
+            <h2>Our Branches</h2>
+            <p>Visit us at our convenient locations for personalized banking services.</p>
+          </header>
+          <div class="grid-2 cards">
+            <article class="card">
+              <h3>Head Office - Kuzhimanna</h3>
+              <address class="branch-info">
+                <p><strong>Address:</strong><br>Kuzhimanna Service Co-operative Bank<br>Kuzhimanna, Malappuram District<br>Kerala - 673641</p>
+                <p><strong>Phone:</strong> <a href="tel:+914832726104">0483 2726104</a></p>
+                <p><strong>Email:</strong> <a href="mailto:headoffice@kscbank.in">headoffice@kscbank.in</a></p>
+                <p><strong>Banking Hours:</strong><br>Monday to Friday: 10:00 AM - 4:00 PM<br>Saturday: 10:00 AM - 2:00 PM</p>
+              </address>
+              <a href="https://maps.google.com/?q=Kuzhimanna+Service+Cooperative+Bank" target="_blank" class="btn btn-light">Get Directions</a>
+            </article>
+            <article class="card">
+              <h3>Kadungallur Branch</h3>
+              <address class="branch-info">
+                <p><strong>Address:</strong><br>Kuzhimanna Service Co-operative Bank<br>Kadungallur Branch<br>Kadungallur, Kizhisseri<br>Malappuram District<br>Kerala - 673641</p>
+                <p><strong>Phone:</strong> <a href="tel:+914832974104">0483 2974104</a></p>
+                <p><strong>Email:</strong> <a href="mailto:kadungallur@kscbank.in">kadungallur@kscbank.in</a></p>
+                <p><strong>Banking Hours:</strong><br>Monday to Friday: 10:00 AM - 4:00 PM<br>Saturday: 10:00 AM - 2:00 PM</p>
+              </address>
+              <a href="https://maps.google.com/?q=Kadungallur+Kizhisseri+Malappuram" target="_blank" class="btn btn-light">Get Directions</a>
+            </article>
+          </div>
+          <div class="note">
+            <strong>Note:</strong> Banking hours may vary during public holidays. Please call ahead to confirm timings.
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section alt" data-animate>
+        <div class="container grid-2">
+          <div>
+            <header class="section-header left">
+              <h2>Get in Touch</h2>
+            </header>
+            <p class="lead">Have questions about our services? Need assistance with your account? We're here to help!</p>
+            <div class="contact-options">
+              <div class="contact-item">
+                <h4>Head Office</h4>
+                <p>Phone: <a href="tel:+914832726104">0483 2726104</a></p>
+              </div>
+              <div class="contact-item">
+                <h4>Kadungallur Branch</h4>
+                <p>Phone: <a href="tel:+914832974104">0483 2974104</a></p>
+              </div>
+              <div class="contact-item">
+                <h4>Email Support</h4>
+                <p><a href="mailto:support@kscbank.in">support@kscbank.in</a></p>
+              </div>
+            </div>
+            <p class="muted small">Our customer service team is available during banking hours to assist you.</p>
+          </div>
+          <form class="card form" action="#" method="post" onsubmit="return false" aria-labelledby="form-heading">
+            <h3 id="form-heading">Quick Enquiry</h3>
+            <div class="field">
+              <label for="branch-select">Select Branch</label>
+              <select id="branch-select" name="branch" class="form-select" required>
+                <option value="">Choose a branch...</option>
+                <option value="head-office">Head Office - Kuzhimanna</option>
+                <option value="kadungallur">Kadungallur Branch</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your full name" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="Your phone number" required />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" placeholder="How can we help?"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit" id="enquiry-submit">Send Enquiry</button>
+            <p class="muted tiny">We'll respond to your enquiry within 1 business day.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="brand-col">
+          <a href="#home" class="brand small">
+            <img src="assets/img/logo.png" alt="Bank logo" width="28" height="28" />
+            <span class="brand-text"><strong>Kuzhimanna</strong> Service Co‑operative Bank</span>
+          </a>
+          <p class="muted small">Committed to community‑first banking with transparency and trust.</p>
+          <div class="footer-actions">
+            <a id="footer-call" class="btn btn-sm btn-primary" href="#">Call</a>
+            <a id="footer-email" class="btn btn-sm btn-outline" href="#">Email</a>
+          </div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="links">
+            <li><a href="#rates">Rates & Charges</a></li>
+            <li><a href="#loans">Loan Products</a></li>
+            <li><a href="#digital">Digital Banking</a></li>
+            <li><a href="#notices">Announcements</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul class="links">
+            <li><a href="#branches">Our Branches</a></li>
+            <li><a href="#contact">Support</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="tel:+914832726104">Head: 0483 2726104</a></li>
+            <li><a href="tel:+914832974104">Kadungallur: 0483 2974104</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footnote">
+        <p>© <span id="year"></span> Kuzhimanna Service Co‑operative Bank. All rights reserved.</p>
+        <p class="muted tiny">Product information is illustrative. Please contact the branch for official details.</p>
+      </div>
+    </footer>
+
+    <div id="mobileActions" class="mobile-actions" aria-label="Quick actions">
+      <a id="mActCall" class="mact call" href="#" aria-label="Call">Call</a>
+      <a id="mActEmail" class="mact email" href="#" aria-label="Email">Email</a>
+    </div>
+
+    <button id="backToTop" class="backtotop" aria-label="Back to top" title="Back to top">↑</button>
+
+    <script src="assets/js/security.js"></script>
+    <script src="assets/js/cms.config.js"></script>
+    <script src="assets/js/lazy-load.js"></script>
+    <script src="assets/js/ui-enhancements.js"></script>
+    <script src="assets/js/main.js" defer></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => console.log('SW registered:', registration.scope))
+            .catch(err => console.log('SW registration failed:', err));
+        });
+      }
+    </script>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BankOrCreditUnion",
+      "name": "Kuzhimanna Service Co-operative Bank",
+      "alternateName": "KSCB",
+      "url": "https://kuzhimannabank.com",
+      "logo": "https://kuzhimannabank.com/assets/img/logo.png",
+      "description": "Community-first banking with secure deposits, quick loans, and modern digital services in Kuzhimanna, Kerala.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Main Road",
+        "addressLocality": "Kuzhimanna",
+        "addressRegion": "Kerala",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-00000-00000",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Malayalam"]
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "10:00",
+        "closes": "16:00"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Banking Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "FinancialProduct",
+              "name": "Savings Account",
+              "description": "Everyday savings with attractive interest"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "FinancialProduct",
+              "name": "Fixed Deposit",
+              "description": "Lock in competitive returns for fixed terms"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "LoanOrCredit",
+              "name": "Personal Loan",
+              "description": "Quick processing loans with flexible repayment"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+  </body>
+  </html>

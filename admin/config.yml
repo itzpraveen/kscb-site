@@ -1,0 +1,142 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+publish_mode: simple
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+logo_url: "/assets/img/logo.png"
+
+collections:
+  - name: site
+    label: Site Settings
+    files:
+      - label: Contact & Basics
+        name: contact
+        file: assets/data/site.json
+        format: json
+        fields:
+          - { label: Organisation, name: org, widget: string }
+          - { label: Address, name: address, widget: text }
+          - { label: Phone, name: phone, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Google Maps URL, name: map_url, widget: string, required: false }
+
+  - name: notices
+    label: Notices
+    files:
+      - label: Notices List
+        name: notices
+        file: assets/data/notices.json
+        format: json
+        fields:
+          - label: Items
+            name: items
+            widget: list
+            label_singular: Notice
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Date, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+              - { label: Link, name: link, widget: string, required: false }
+
+  - name: deposits
+    label: Deposits
+    files:
+      - label: Deposit Schemes
+        name: deposit_schemes
+        file: assets/data/deposits.json
+        format: json
+        fields:
+          - label: Items
+            name: items
+            widget: list
+            label_singular: Deposit Scheme
+            summary: "{{fields.name}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Description, name: description, widget: text }
+              - label: Features
+                name: features
+                widget: list
+
+  - name: loans
+    label: Loans
+    files:
+      - label: Loan Schemes
+        name: loan_schemes
+        file: assets/data/loans.json
+        format: json
+        fields:
+          - label: Items
+            name: items
+            widget: list
+            label_singular: Loan Scheme
+            summary: "{{fields.name}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Description, name: description, widget: text }
+
+  - name: activities
+    label: Activities
+    files:
+      - label: Activities List
+        name: activities
+        file: assets/data/activities.json
+        format: json
+        fields:
+          - label: Items
+            name: items
+            widget: list
+            label_singular: Activity
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Date, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
+              - { label: Summary, name: summary, widget: text, required: false }
+              - { label: Image (optional), name: image, widget: image, required: false }
+
+  - name: gallery
+    label: Gallery
+    files:
+      - label: Gallery Images
+        name: gallery
+        file: assets/data/gallery.json
+        format: json
+        fields:
+          - label: Items
+            name: items
+            widget: list
+            label_singular: Image
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string, required: false }
+              - { label: Image, name: image, widget: image }
+              - { label: Caption, name: caption, widget: string, required: false }
+
+  - name: rates
+    label: Rates & Charges
+    files:
+      - label: Deposit Rates & Charges
+        name: deposit_rates
+        file: assets/data/rates.json
+        format: json
+        fields:
+          - { label: Effective From, name: effective_from, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+          - label: Deposits
+            name: deposits
+            widget: list
+            label_singular: FD Slab
+            fields:
+              - { label: Tenure, name: tenure, widget: string }
+              - { label: General Rate, name: general, widget: string }
+              - { label: Senior Citizen Rate, name: senior, widget: string }
+          - label: Charges (snapshot)
+            name: charges
+            widget: list
+            label_singular: Charge
+            fields:
+              - { label: Text, name: text, widget: string }
+          - { label: Note, name: note, widget: text }

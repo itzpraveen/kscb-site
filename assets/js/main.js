@@ -1,0 +1,452 @@
+// Basic interactivity for KSCB website
+
+(function () {
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+  const CMS = (typeof window !== 'undefined' && window.CMS_CONFIG) ? window.CMS_CONFIG : { provider: 'json' };
+
+  // Mobile navigation toggle
+  const navToggle = $('.nav-toggle');
+  const nav = $('#primary-nav');
+  if (navToggle && nav) {
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('show');
+    });
+
+    // Close menu when clicking a link
+    $$('#primary-nav a').forEach((a) => a.addEventListener('click', () => {
+      nav.classList.remove('show');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
+    const brandLink = document.querySelector('a.brand[href^="#"]');
+    if (brandLink) {
+      brandLink.addEventListener('click', () => {
+        nav.classList.remove('show');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    }
+  }
+
+  // Smooth scroll for in-page anchors with header offset
+  const getHeaderOffset = () => {
+    const h = document.querySelector('.site-header');
+    return (h ? h.offsetHeight : 72) + 10;
+  };
+  const scrollToEl = (el) => {
+    const y = el.getBoundingClientRect().top + window.scrollY - getHeaderOffset();
+    window.scrollTo({ top: Math.max(y, 0), behavior: 'smooth' });
+  };
+  $$("a[href^='#']").forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (!href || href === '#' || href.length < 2) return;
+      const id = href.slice(1);
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        scrollToEl(target);
+      } else if (id === 'home') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Utilities
+  const fetchJSON = async (url, fallback) => {
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return await res.json();
+    } catch (e) {
+      console.warn('Using fallback for', url, e);
+      return fallback;
+    }
+  };
+  const fetchSanity = async (query, params = {}) => {
+    const cfg = CMS.sanity || {};
+    if (!cfg.projectId || !cfg.dataset) throw new Error('Sanity not configured');
+    const base = `https://${cfg.projectId}.apicdn.sanity.io/v${cfg.apiVersion || '2023-10-01'}/data/query/${cfg.dataset}`;
+    const url = new URL(base);
+    url.searchParams.set('query', query);
+    for (const [k, v] of Object.entries(params)) {
+      url.searchParams.set(`$${k}`, typeof v === 'string' ? v : JSON.stringify(v));
+    }
+    const res = await fetch(url.toString());
+    if (!res.ok) throw new Error('Sanity HTTP ' + res.status);
+    const json = await res.json();
+    return json.result || [];
+  };
+  const el = (tag, cls, html) => {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html !== undefined) n.innerHTML = html;
+    return n;
+  };
+
+  // Notices: load from JSON or Sanity
+  (async () => {
+    const noticeList = $('#notice-list');
+    if (!noticeList) return;
+    let items = [];
+    if (CMS.provider === 'sanity') {
+      try {
+        items = await fetchSanity("*[_type == 'notice'] | order(date desc){title, date, link}");
+      } catch (e) {
+        console.warn('Sanity notices failed, falling back', e);
+      }
+    }
+    if (!items.length) {
+      const data = await fetchJSON('assets/data/notices.json', { items: [] });
+      items = data.items || [];
+    }
+    items
+      .slice()
+      .sort((a, b) => (a.date < b.date ? 1 : -1))
+      .forEach((n) => {
+        const li = el('li');
+        const title = el('div', 'title', `<a href="${n.link || '#'}">${n.title}</a>`);
+        const meta = el('div', 'meta');
+        const d = n.date ? new Date(n.date) : null;
+        meta.textContent = d ? d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' }) : '';
+        li.appendChild(title);
+        li.appendChild(meta);
+        noticeList.appendChild(li);
+      });
+  })();
+
+  // Year in footer
+  const year = $('#year');
+  if (year) year.textContent = String(new Date().getFullYear());
+
+  // Lightweight number animation for stats
+  const animateCount = (el, target, duration = 900) => {
+    const start = 0;
+    const startTime = performance.now();
+    const step = (now) => {
+      const p = Math.min(1, (now - startTime) / duration);
+      const val = Math.floor(start + (target - start) * p);
+      el.textContent = val.toLocaleString() + '+';
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const statMembers = $('#stat-members');
+  if (statMembers) {
+    // Extract number from existing content, fallback to 10000
+    const match = (statMembers.textContent || '').replace(/[^0-9]/g, '');
+    const target = match ? parseInt(match, 10) : 10000;
+    // Animate when visible
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          animateCount(statMembers, target);
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    obs.observe(statMembers);
+  }
+
+  // Enhanced enquiry form handler with security
+  const enquiryBtn = $('#enquiry-submit');
+  const enquiryForm = enquiryBtn?.closest('form');
+  
+  if (enquiryBtn && enquiryForm) {
+    // Add CSRF token to form
+    const csrfInput = document.createElement('input');
+    csrfInput.type = 'hidden';
+    csrfInput.name = 'csrf_token';
+    csrfInput.value = SecurityUtils.getCSRFToken();
+    enquiryForm.appendChild(csrfInput);
+    
+    enquiryBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Check rate limiting
+      if (!SecurityUtils.canSubmitForm('enquiry')) {
+        showNotification('Please wait 30 seconds before submitting again.', 'warning');
+        return;
+      }
+      
+      // Collect and validate form data
+      const formData = {
+        name: $('#name')?.value?.trim(),
+        phone: $('#phone')?.value?.trim(),
+        message: $('#message')?.value?.trim(),
+        csrf_token: csrfInput.value
+      };
+      
+      const validation = SecurityUtils.validateForm(formData);
+      
+      if (!validation.valid) {
+        showNotification(validation.errors.join('<br>'), 'error');
+        return;
+      }
+      
+      // Show loading state
+      enquiryBtn.disabled = true;
+      enquiryBtn.textContent = 'Sending...';
+      
+      // Simulate form submission (replace with actual backend call)
+      setTimeout(() => {
+        enquiryBtn.disabled = false;
+        enquiryBtn.textContent = 'Send Enquiry';
+        showNotification('Thanks for your enquiry. Our team will contact you shortly.', 'success');
+        enquiryForm.reset();
+      }, 1000);
+    });
+  }
+  
+  // Notification system
+  function showNotification(message, type = 'info') {
+    const existing = $('.notification');
+    if (existing) existing.remove();
+    
+    const notification = el('div', `notification notification-${type}`);
+    notification.innerHTML = SecurityUtils.escapeHtml(message);
+    notification.style.cssText = `
+      position: fixed;
+      top: 90px;
+      right: 20px;
+      max-width: 320px;
+      padding: 16px;
+      background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#f59e0b'};
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 1000;
+      animation: slideIn 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 5000);
+  }
+
+  // Back-to-top button and active nav highlighting
+  const backBtn = document.getElementById('backToTop');
+  const navLinks = Array.from(document.querySelectorAll('#primary-nav a[href^="#"]'));
+  const sections = ['home','products','services','activities','notices','contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  const onScroll = () => {
+    if (backBtn) backBtn.classList.toggle('show', window.scrollY > 480);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  if (backBtn) backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  const obsNav = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      const id = e.target.id;
+      const link = navLinks.find(a => a.getAttribute('href') === `#${id}`);
+      if (!link) return;
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-50% 0px -40% 0px', threshold: 0.01 });
+  sections.forEach(s => obsNav.observe(s));
+
+  // Reveal on scroll for sections with data-animate
+  const revealTargets = Array.from(document.querySelectorAll('[data-animate]'));
+  const obsReveal = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        obsReveal.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+  revealTargets.forEach(t => obsReveal.observe(t));
+
+  // Fallback: ensure sections are visible after load (in case observer misses)
+  window.setTimeout(() => {
+    const anyVisible = revealTargets.some(t => t.classList.contains('in-view'));
+    if (!anyVisible) revealTargets.forEach(t => t.classList.add('in-view'));
+  }, 1200);
+
+  // Site contact: load from JSON or Sanity
+  (async () => {
+    let data = null;
+    if (CMS.provider === 'sanity') {
+      try {
+        const r = await fetchSanity("*[_type == 'siteSettings'][0]{org, branches, main_phone, support_email, website}");
+        data = r || null;
+      } catch (e) {
+        console.warn('Sanity site failed, falling back', e);
+      }
+    }
+    if (!data) data = await fetchJSON('assets/data/site.json', null);
+    if (!data) return;
+    
+    // Update footer contact buttons
+    const fCall = document.getElementById('footer-call');
+    const fMail = document.getElementById('footer-email');
+    if (fCall && data.main_phone) {
+      const tel = data.main_phone.replace(/[^0-9+]/g, '');
+      fCall.href = 'tel:' + tel;
+      fCall.textContent = 'Call Head Office';
+    }
+    if (fMail && data.support_email) {
+      fMail.href = 'mailto:' + data.support_email;
+    }
+  })();
+
+  // Deposits: render from JSON or Sanity
+  (async () => {
+    const container = $('#deposits-grid');
+    if (!container) return;
+    let items = [];
+    if (CMS.provider === 'sanity') {
+      try {
+        items = await fetchSanity("*[_type == 'deposit'] | order(_createdAt desc){name, description, features}");
+      } catch (e) {
+        console.warn('Sanity deposits failed, falling back', e);
+      }
+    }
+    if (!items.length) {
+      const data = await fetchJSON('assets/data/deposits.json', { items: [] });
+      items = data.items || [];
+    }
+    items.forEach((item) => {
+      const card = el('article', 'card');
+      card.appendChild(el('h3', '', item.name));
+      if (item.description) card.appendChild(el('p', '', item.description));
+      if (Array.isArray(item.features) && item.features.length) {
+        const details = el('details');
+        const sum = el('summary', '', 'View details');
+        details.appendChild(sum);
+        const ul = el('ul', 'tick');
+        item.features.forEach((f) => {
+          const li = el('li', '', f);
+          ul.appendChild(li);
+        });
+        details.appendChild(ul);
+        card.appendChild(details);
+      }
+      container.appendChild(card);
+    });
+  })();
+
+  // Loans: render from JSON or Sanity
+  (async () => {
+    const container = $('#loans-grid');
+    if (!container) return;
+    let items = [];
+    if (CMS.provider === 'sanity') {
+      try {
+        items = await fetchSanity("*[_type == 'loan'] | order(_createdAt desc){name, description}");
+      } catch (e) {
+        console.warn('Sanity loans failed, falling back', e);
+      }
+    }
+    if (!items.length) {
+      const data = await fetchJSON('assets/data/loans.json', { items: [] });
+      items = data.items || [];
+    }
+    items.forEach((item) => {
+      const card = el('article', 'card');
+      card.appendChild(el('h3', '', item.name));
+      if (item.description) card.appendChild(el('p', '', item.description));
+      container.appendChild(card);
+    });
+  })();
+
+  // Activities: render from JSON or Sanity
+  (async () => {
+    const container = $('#activities-list');
+    if (!container) return;
+    let items = [];
+    if (CMS.provider === 'sanity') {
+      try {
+        items = await fetchSanity("*[_type == 'activity'] | order(date desc){title, date, summary, 'imageUrl': image.asset->url}");
+      } catch (e) {
+        console.warn('Sanity activities failed, falling back', e);
+      }
+    }
+    if (!items.length) {
+      const data = await fetchJSON('assets/data/activities.json', { items: [] });
+      items = data.items || [];
+    }
+    items.forEach((item) => {
+      const card = el('article', 'card activity-card');
+      if (item.imageUrl || item.image) {
+        const img = el('img');
+        img.src = item.imageUrl || item.image;
+        img.alt = item.title || 'Activity image';
+        card.appendChild(img);
+      }
+      card.appendChild(el('h3', '', item.title || ''));
+      if (item.summary) card.appendChild(el('p', '', item.summary));
+      if (item.date) card.appendChild(el('div', 'activity-meta', new Date(item.date).toLocaleDateString()));
+      container.appendChild(card);
+    });
+  })();
+
+  // Gallery: render from JSON or Sanity
+  (async () => {
+    const container = $('#gallery-grid');
+    if (!container) return;
+    let items = [];
+    if (CMS.provider === 'sanity') {
+      try {
+        items = await fetchSanity("*[_type == 'galleryImage'] | order(_createdAt desc){title, caption, 'imageUrl': image.asset->url}");
+      } catch (e) {
+        console.warn('Sanity gallery failed, falling back', e);
+      }
+    }
+    if (!items.length) {
+      const data = await fetchJSON('assets/data/gallery.json', { items: [] });
+      items = data.items || [];
+    }
+    items.forEach((item) => {
+      if (!(item.imageUrl || item.image)) return;
+      const g = el('div', 'gitem');
+      const img = el('img');
+      img.src = item.imageUrl || item.image;
+      img.alt = item.title || 'Gallery image';
+      g.appendChild(img);
+      if (item.title || item.caption) {
+        g.appendChild(el('div', 'cap', `${item.title ? `<strong>${item.title}</strong>` : ''}${item.caption ? ` — ${item.caption}` : ''}`));
+      }
+      container.appendChild(g);
+    });
+  })();
+
+  // Rates & charges
+  (async () => {
+    const table = document.getElementById('rates-table');
+    if (!table) return;
+    const data = await fetchJSON('assets/data/rates.json', null);
+    if (!data) return;
+    const tbody = table.querySelector('tbody');
+    (data.deposits || []).forEach(r => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${r.tenure}</td><td>${r.general}</td><td>${r.senior}</td>`;
+      tbody.appendChild(tr);
+    });
+    const eff = document.getElementById('rates-effective');
+    if (eff && data.effective_from) eff.textContent = `Effective from: ${new Date(data.effective_from).toLocaleDateString()}`;
+    const note = document.getElementById('rates-note');
+    if (note && data.note) note.textContent = data.note;
+    const chargesList = document.getElementById('charges-list');
+    if (chargesList) {
+      (data.charges || []).forEach(c => chargesList.appendChild(el('li','',c.text)));
+    }
+  })();
+
+  // Mobile sticky actions
+  (async () => {
+    const data = await fetchJSON('assets/data/site.json', null);
+    const call = document.getElementById('mActCall');
+    const mail = document.getElementById('mActEmail');
+    if (data && call && data.phone) call.href = 'tel:' + data.phone.replace(/[^0-9+]/g,'');
+    if (data && mail && data.email) mail.href = 'mailto:' + data.email;
+  })();
+})();

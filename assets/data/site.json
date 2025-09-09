@@ -1,0 +1,32 @@
+{
+  "org": "Kuzhimanna Service Co-operative Bank",
+  "branches": [
+    {
+      "name": "Head Office - Kuzhimanna",
+      "address": "Thavanoor Road\nKizhissery\nKuzhimanna PO\n673641",
+      "phone": "0483 2726104",
+      "email": "headoffice@kscbank.in",
+      "map_url": "https://maps.google.com/?q=Kuzhimanna+Service+Cooperative+Bank+Kizhissery",
+      "hours": {
+        "weekdays": "10:00 AM - 4:00 PM",
+        "saturday": "10:00 AM - 2:00 PM",
+        "sunday": "Closed"
+      }
+    },
+    {
+      "name": "Kadungallur Branch",
+      "address": "Kadungallur Branch\nKadungallur, Kizhisseri\nMalappuram District\n673641",
+      "phone": "0483 2974104",
+      "email": "kadungallur@kscbank.in",
+      "map_url": "https://maps.google.com/?q=Kadungallur+Kizhisseri+Malappuram",
+      "hours": {
+        "weekdays": "10:00 AM - 4:00 PM",
+        "saturday": "10:00 AM - 2:00 PM",
+        "sunday": "Closed"
+      }
+    }
+  ],
+  "main_phone": "0483 2726104",
+  "support_email": "kuzhimannascb@gmail.com",
+  "website": "https://kscbank.in"
+}
