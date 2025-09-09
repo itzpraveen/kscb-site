@@ -1,5 +1,5 @@
 # Robots.txt for Kuzhimanna Service Co-operative Bank
-# https://kuzhimannabank.com/
+# https://kuzhimannaservicebank.com/
 
 # Allow all crawlers
 User-agent: *
@@ -20,7 +20,7 @@ User-agent: Bingbot
 Allow: /
 
 # Sitemap location
-Sitemap: https://kuzhimannabank.com/sitemap.xml
+Sitemap: https://kuzhimannaservicebank.com/sitemap.xml
 
 # Crawl-delay for less important bots
 User-agent: SemrushBot
