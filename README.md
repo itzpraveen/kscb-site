@@ -1,4 +1,4 @@
-Kuzhimanna Service Co‑operative Bank – Website
+Static Website Source
 
 Overview
 
