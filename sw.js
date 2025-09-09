@@ -1,20 +1,19 @@
 // Service Worker for KSCB - Offline support and caching
 const CACHE_NAME = 'kscb-v1.0.0';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/assets/css/styles.css',
-  '/assets/js/main.js',
-  '/assets/js/security.js',
-  '/assets/js/cms.config.js',
-  '/assets/js/lazy-load.js',
-  '/assets/img/logo.png',
-  '/assets/data/deposits.json',
-  '/assets/data/loans.json',
-  '/assets/data/activities.json',
-  '/assets/data/notices.json',
-  '/assets/data/gallery.json',
-  '/assets/data/site.json',
+  'index.html',
+  'assets/css/styles.css',
+  'assets/js/main.js',
+  'assets/js/security.js',
+  'assets/js/cms.config.js',
+  'assets/js/lazy-load.js',
+  'assets/img/logo.png',
+  'assets/data/deposits.json',
+  'assets/data/loans.json',
+  'assets/data/activities.json',
+  'assets/data/notices.json',
+  'assets/data/gallery.json',
+  'assets/data/site.json',
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
 ];
 
@@ -117,9 +116,9 @@ self.addEventListener('fetch', event => {
       .catch(() => {
         // Offline fallback page
         if (request.destination === 'document') {
-          return caches.match('/offline.html');
-        }
-      })
+          return caches.match('offline.html');
+      }
+    })
   );
 });
 
@@ -150,8 +149,8 @@ async function syncEnquiries() {
 self.addEventListener('push', event => {
   const options = {
     body: event.data ? event.data.text() : 'New update from KSCB',
-    icon: '/assets/img/logo.png',
-    badge: '/assets/img/logo.png',
+    icon: 'assets/img/logo.png',
+    badge: 'assets/img/logo.png',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
@@ -167,6 +166,6 @@ self.addEventListener('push', event => {
 self.addEventListener('notificationclick', event => {
   event.notification.close();
   event.waitUntil(
-    clients.openWindow('/')
+    clients.openWindow('./')
   );
 });
