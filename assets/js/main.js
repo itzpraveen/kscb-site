@@ -130,7 +130,7 @@
     const url = new URL(base);
     url.searchParams.set('query', query);
     for (const [k, v] of Object.entries(params)) {
-      url.searchParams.set(`$${k}`, typeof v === 'string' ? v : JSON.stringify(v));
+      url.searchParams.set(`${k}`, typeof v === 'string' ? v : JSON.stringify(v));
     }
     const res = await fetch(url.toString());
     if (!res.ok) throw new Error('Sanity HTTP ' + res.status);
@@ -250,13 +250,13 @@
       
       // Show loading state
       enquiryBtn.disabled = true;
-      enquiryBtn.textContent = 'Sending...';
+      enquiryBtn.textContent = 'അയക്കുന്നു...';
       
       // Simulate form submission (replace with actual backend call)
       setTimeout(() => {
         enquiryBtn.disabled = false;
-        enquiryBtn.textContent = 'Send Enquiry';
-        showNotification('Thanks for your enquiry. Our team will contact you shortly.', 'success');
+        enquiryBtn.textContent = 'അന്വേഷണം അയക്കാം';
+        showNotification('നിങ്ങളുടെ അന്വേഷണത്തിന് നന്ദി. ഞങ്ങളുടെ ടീം ഉടൻ ബന്ധപ്പെടുന്നതാണ്.', 'success');
         enquiryForm.reset();
       }, 1000);
     });
@@ -354,7 +354,7 @@
     if (fCall && mainPhone) {
       const tel = mainPhone.replace(/[^0-9+]/g, '');
       fCall.href = 'tel:' + tel;
-      fCall.textContent = 'Call Head Office';
+      fCall.textContent = 'ഹെഡ് ഓഫീസിലേക്ക് വിളിക്കാം';
     }
     if (fMail && supportEmail) {
       fMail.href = 'mailto:' + supportEmail;
@@ -529,11 +529,11 @@
     const supportEmail = data.support_email || data.email || (Array.isArray(data.branches) && data.branches[0]?.email) || '';
     if (call && mainPhone) {
       call.href = 'tel:' + mainPhone.replace(/[^0-9+]/g,'');
-      call.setAttribute('aria-label', 'Call Head Office');
+      call.setAttribute('aria-label', 'ഹെഡ് ഓഫീസിലേക്ക് വിളിക്കാം');
     }
     if (mail && supportEmail) {
       mail.href = 'mailto:' + supportEmail;
-      mail.setAttribute('aria-label', 'Email Support');
+      mail.setAttribute('aria-label', 'ഇമെയിൽ ചെയ്യാം');
     }
   })();
 
