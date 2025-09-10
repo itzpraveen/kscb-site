@@ -1,50 +1,116 @@
 {
   "items": [
     {
-      "name": "Fixed Deposit",
-      "description": "Lock in competitive returns for a fixed term.",
-      "features": [
-        "Tenure: 6–60 months",
-        "Premature closure as per rules",
-        "Auto‑renew facility",
-        "Senior citizen benefits"
-      ]
+      "name": {
+        "en": "Fixed Deposit",
+        "ml": "ഫിക്സഡ് നിക്ഷേപം"
+      },
+      "description": {
+        "en": "Lock in competitive returns for a fixed term.",
+        "ml": "നിശ്ചിത കാലയളവിലേക്ക് മികച്ച വരുമാനം ഉറപ്പാക്കുക."
+      },
+      "features": {
+        "en": [
+          "Tenure: 6–60 months",
+          "Premature closure as per rules",
+          "Auto‑renew facility",
+          "Senior citizen benefits"
+        ],
+        "ml": [
+          "കാലാവധി: 6–60 മാസങ്ങൾ",
+          "നിയമങ്ങൾ അനുസരിച്ച് മുൻകൂർ പിൻവലിക്കൽ",
+          "ഓട്ടോ പുതുക്കൽ സൗകര്യം",
+          "മുതിർന്ന പൗരന്മാർക്ക് പ്രത്യേക ആനുകൂല്യങ്ങൾ"
+        ]
+      }
     },
     {
-      "name": "Current Deposit",
-      "description": "Ideal for businesses with frequent transactions.",
-      "features": [
-        "Chequebook facility",
-        "Overdraft as per eligibility",
-        "Dedicated support"
-      ]
+      "name": {
+        "en": "Current Deposit",
+        "ml": "കറന്റ് അക്കൗണ്ട്"
+      },
+      "description": {
+        "en": "Ideal for businesses with frequent transactions.",
+        "ml": "സ്ഥിരമായ ഇടപാടുകളുള്ള ബിസിനസുകൾക്ക് അനുയോജ്യം."
+      },
+      "features": {
+        "en": [
+          "Chequebook facility",
+          "Overdraft as per eligibility",
+          "Dedicated support"
+        ],
+        "ml": [
+          "ചെക്ക് ബുക്ക് സൗകര്യം",
+          "യോഗ്യത അനുസരിച്ച് ഓവർഡ്രാഫ്റ്റ്",
+          "പ്രത്യേക പിന്തുണ"
+        ]
+      }
     },
     {
-      "name": "Savings Account",
-      "description": "Everyday savings with attractive interest and easy access.",
-      "features": [
-        "Nomination & joint account",
-        "Passbook and SMS alerts",
-        "No hidden charges"
-      ]
+      "name": {
+        "en": "Savings Account",
+        "ml": "സേവിംഗ്സ് അക്കൗണ്ട്"
+      },
+      "description": {
+        "en": "Everyday savings with attractive interest and easy access.",
+        "ml": "ആകർഷകമായ പലിശയും എളുപ്പത്തിലുള്ള പ്രവേശനവുമുള്ള ദൈനംദിന സമ്പാദ്യം."
+      },
+      "features": {
+        "en": [
+          "Nomination & joint account",
+          "Passbook and SMS alerts",
+          "No hidden charges"
+        ],
+        "ml": [
+          "നോമിനേഷൻ & സംയുക്ത അക്കൗണ്ട്",
+          "പാസ്ബുക്കും എസ്.എം.എസ് അലേർട്ടുകളും",
+          "മറഞ്ഞിരിക്കുന്ന ചാർജുകളില്ല"
+        ]
+      }
     },
     {
-      "name": "Recurring Deposit",
-      "description": "Disciplined monthly saving with competitive returns.",
-      "features": [
-        "Flexible tenure",
-        "Easy standing instructions",
-        "Goal‑based saving"
-      ]
+      "name": {
+        "en": "Recurring Deposit",
+        "ml": "റിക്കറിംഗ് നിക്ഷേപം"
+      },
+      "description": {
+        "en": "Disciplined monthly saving with competitive returns.",
+        "ml": "മത്സരയോഗ്യമായ വരുമാനത്തോടെ ക്രമമായ പ്രതിമാസ സമ്പാദ്യം."
+      },
+      "features": {
+        "en": [
+          "Flexible tenure",
+          "Easy standing instructions",
+          "Goal‑based saving"
+        ],
+        "ml": [
+          "സൗകര്യപ്രദമായ കാലാവധി",
+          "എളുപ്പമുള്ള സ്റ്റാൻഡിംഗ് നിർദ്ദേശങ്ങൾ",
+          "ലക്ഷ്യാധിഷ്ഠിത സമ്പാദ്യം"
+        ]
+      }
     },
     {
-      "name": "Daily Deposit (Pigmy)",
-      "description": "Build savings with small daily collections (Pigmy).",
-      "features": [
-        "Ideal for traders and households",
-        "Disciplined micro‑savings",
-        "Simple withdrawal rules"
-      ]
+      "name": {
+        "en": "Daily Deposit (Pigmy)",
+        "ml": "പിഗ്മി നിക്ഷേപം (ദിവസേന)"
+      },
+      "description": {
+        "en": "Build savings with small daily collections (Pigmy).",
+        "ml": "ചെറിയ ദിവസേന പിരിവുകളിലൂടെ സമ്പാദ്യം വർദ്ധിപ്പിക്കുക."
+      },
+      "features": {
+        "en": [
+          "Ideal for traders and households",
+          "Disciplined micro‑savings",
+          "Simple withdrawal rules"
+        ],
+        "ml": [
+          "വ്യാപാരികൾക്കും ഗൃഹസ്ഥർക്കും അനുയോജ്യം",
+          "ക്രമീകൃത സൂക്ഷ്മ സമ്പാദ്യം",
+          "ലളിതമായ പിൻവലിക്കൽ നിയമങ്ങൾ"
+        ]
+      }
     }
   ]
 }

@@ -1,24 +1,54 @@
 {
   "items": [
     {
-      "name": "Gold Loan",
-      "description": "Quick disbursal against gold ornaments at attractive rates."
+      "name": {
+        "en": "Gold Loan",
+        "ml": "സ്വർണ്ണ വായ്പ"
+      },
+      "description": {
+        "en": "Quick disbursal against gold ornaments at attractive rates.",
+        "ml": "സ്വർണ്ണാഭരണങ്ങളുടെ പണയത്തിൽ ആകർഷകമായ നിരക്കിൽ തുക വിതരണം."
+      }
     },
     {
-      "name": "Non‑Agricultural Medium‑Term Loan",
-      "description": "Medium‑term credit for non‑agricultural purposes with structured EMIs."
+      "name": {
+        "en": "Non‑Agricultural Medium‑Term Loan",
+        "ml": "കാർഷികേതര ഇടത്തരം വായ്പ"
+      },
+      "description": {
+        "en": "Medium‑term credit for non‑agricultural purposes with structured EMIs.",
+        "ml": "കാർഷികേതര ആവശ്യങ്ങൾക്കുള്ള ഇടത്തരം വായ്പ ക്രമീകൃത ഇഎംഐയോടെ."
+      }
     },
     {
-      "name": "Consumer Loans",
-      "description": "Finance household and personal purchases with transparent terms."
+      "name": {
+        "en": "Consumer Loans",
+        "ml": "ഉപഭോക്തൃ വായ്പകൾ"
+      },
+      "description": {
+        "en": "Finance household and personal purchases with transparent terms.",
+        "ml": "സുതാര്യമായ നിബന്ധനകളോടെ ഗാർഹിക, വ്യക്തിഗത വാങ്ങലുകൾക്ക് ധനസഹായം."
+      }
     },
     {
-      "name": "Mattathe Mulla",
-      "description": "Local scheme tailored to community needs. Contact branch for details."
+      "name": {
+        "en": "Mattathe Mulla",
+        "ml": "മട്ടത്തെ മുള്ള"
+      },
+      "description": {
+        "en": "Local scheme tailored to community needs. Contact branch for details.",
+        "ml": "പ്രാദേശിക സമൂഹത്തിന്റെ ആവശ്യങ്ങൾക്കനുസരിച്ചുള്ള പ്രത്യേക പദ്ധതി. വിശദവിവരങ്ങൾക്ക് ബ്രാഞ്ചുമായി ബന്ധപ്പെടുക."
+      }
     },
     {
-      "name": "Kudumbashree Linkage Loans",
-      "description": "Credit support for Kudumbashree SHGs with guided onboarding."
+      "name": {
+        "en": "Kudumbashree Linkage Loans",
+        "ml": "കുടുംബശ്രീ ലിങ്കേജ് വായ്പകൾ"
+      },
+      "description": {
+        "en": "Credit support for Kudumbashree SHGs with guided onboarding.",
+        "ml": "കുടുംബശ്രീ സ്വയം സഹായ സംഘങ്ങൾക്ക് മാർഗ്ഗനിർദ്ദേശത്തോടെയുള്ള വായ്പാ സഹായം."
+      }
     }
   ]
 }

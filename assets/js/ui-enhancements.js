@@ -259,23 +259,9 @@
     }
 
     init() {
-      // Add tooltips to important elements
-      const tooltipElements = [
-        { selector: '.btn-primary', text: 'Click to proceed' },
-        { selector: '[aria-label]', useAriaLabel: true }
-      ];
-
-      tooltipElements.forEach(config => {
-        const elements = document.querySelectorAll(config.selector);
-        elements.forEach(el => {
-          if (!el.hasAttribute('data-tooltip')) {
-            const text = config.useAriaLabel ? el.getAttribute('aria-label') : config.text;
-            if (text) {
-              el.setAttribute('data-tooltip', text);
-            }
-          }
-        });
-      });
+      // Do not auto-inject tooltips for aria-label or buttons.
+      // Tooltips will only show when elements explicitly include
+      // a data-tooltip attribute in markup.
     }
   }
 
