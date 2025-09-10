@@ -29,6 +29,23 @@
     }
   }
 
+  // Language toggle (EN / ML)
+  const LANG_KEY = 'site_lang';
+  const langToggleBtn = document.getElementById('langToggle');
+  const applyLang = (lang) => {
+    document.documentElement.setAttribute('data-lang', lang);
+    if (langToggleBtn) langToggleBtn.textContent = lang === 'ml' ? 'EN' : 'മലയാളം';
+    try { localStorage.setItem(LANG_KEY, lang); } catch (_) {}
+  };
+  const savedLang = (() => { try { return localStorage.getItem(LANG_KEY); } catch(_) { return null; } })();
+  applyLang(savedLang === 'ml' ? 'ml' : 'en');
+  if (langToggleBtn) {
+    langToggleBtn.addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-lang') === 'ml' ? 'ml' : 'en';
+      applyLang(cur === 'ml' ? 'en' : 'ml');
+    });
+  }
+
   // Smooth scroll for in-page anchors with header offset
   const getHeaderOffset = () => {
     const h = document.querySelector('.site-header');

@@ -52,6 +52,7 @@ html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 12px)
 img { max-width: 100%; display: block; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+.brand, .brand:hover { text-decoration: none; }
 
 .container {
   width: 100%;
@@ -102,6 +103,14 @@ a:hover { text-decoration: underline; }
 /* Subtle reveal */
 [data-animate] { opacity: 0; transform: translateY(10px); transition: opacity 320ms ease, transform 320ms ease; }
 [data-animate].in-view { opacity: 1; transform: none; }
+
+/* Simple language toggle helpers */
+.i18n [lang='ml'] { display: none; }
+[data-lang='ml'] .i18n [lang='en'] { display: none; }
+[data-lang='ml'] .i18n [lang='ml'] { display: inline; }
+
+.lang-toggle { border: 1px solid var(--border); background: #fff; color: var(--ink); padding: 6px 10px; border-radius: 999px; font-weight: 600; cursor: pointer; }
+.lang-toggle:hover { background: #f6fbf7; }
 
 @media (prefers-reduced-motion: reduce) {
   [data-animate] { opacity: 1 !important; transform: none !important; transition: none !important; }
