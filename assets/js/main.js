@@ -5,28 +5,50 @@
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   const CMS = (typeof window !== 'undefined' && window.CMS_CONFIG) ? window.CMS_CONFIG : { provider: 'json' };
 
-  // Mobile navigation toggle
+  // Mobile navigation toggle with overlay, outside click, and ESC to close
   const navToggle = $('.nav-toggle');
   const nav = $('#primary-nav');
+  let navOverlay = null;
+  const closeMenu = () => {
+    if (!nav) return;
+    nav.classList.remove('show');
+    navToggle && navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+    if (navOverlay) navOverlay.remove();
+    navOverlay = null;
+  };
+  const openMenu = () => {
+    if (!nav) return;
+    nav.classList.add('show');
+    navToggle && navToggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+    if (!navOverlay) {
+      navOverlay = document.createElement('div');
+      navOverlay.className = 'nav-overlay';
+      document.body.appendChild(navOverlay);
+      navOverlay.addEventListener('click', closeMenu);
+    }
+  };
   if (navToggle && nav) {
     navToggle.addEventListener('click', () => {
       const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', String(!expanded));
-      nav.classList.toggle('show');
+      if (expanded) closeMenu(); else openMenu();
     });
 
     // Close menu when clicking a link
-    $$('#primary-nav a').forEach((a) => a.addEventListener('click', () => {
-      nav.classList.remove('show');
-      navToggle.setAttribute('aria-expanded', 'false');
-    }));
+    $$('#primary-nav a').forEach((a) => a.addEventListener('click', () => closeMenu()));
     const brandLink = document.querySelector('a.brand[href^="#"]');
-    if (brandLink) {
-      brandLink.addEventListener('click', () => {
-        nav.classList.remove('show');
-        navToggle.setAttribute('aria-expanded', 'false');
-      });
-    }
+    if (brandLink) brandLink.addEventListener('click', () => closeMenu());
+
+    // Close on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Close on viewport resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960) closeMenu();
+    });
   }
 
   // Language toggle (EN / ML)
