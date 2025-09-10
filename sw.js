@@ -12,9 +12,12 @@ const urlsToCache = [
   'assets/js/ui-enhancements.js',
   'assets/img/logo.png',
   'assets/data/deposits.json',
+  'assets/data/deposits.ml.json',
   'assets/data/loans.json',
+  'assets/data/loans.ml.json',
   'assets/data/activities.json',
   'assets/data/notices.json',
+  'assets/data/notices.ml.json',
   'assets/data/gallery.json',
   'assets/data/site.json',
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'

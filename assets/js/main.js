@@ -36,6 +36,15 @@
     document.documentElement.setAttribute('data-lang', lang);
     if (langToggleBtn) langToggleBtn.textContent = lang === 'ml' ? 'EN' : 'മലയാളം';
     try { localStorage.setItem(LANG_KEY, lang); } catch (_) {}
+    // Re-render dynamic sections for the selected language
+    Promise.resolve().then(() => {
+      if (typeof renderNotices === 'function') renderNotices();
+      if (typeof renderDeposits === 'function') renderDeposits();
+      if (typeof renderLoans === 'function') renderLoans();
+      if (typeof renderActivities === 'function') renderActivities();
+      if (typeof renderGallery === 'function') renderGallery();
+      if (typeof renderRates === 'function') renderRates();
+    });
   };
   const savedLang = (() => { try { return localStorage.getItem(LANG_KEY); } catch(_) { return null; } })();
   applyLang(savedLang === 'ml' ? 'ml' : 'en');
@@ -72,6 +81,7 @@
   });
 
   // Utilities
+  const getLang = () => (document.documentElement.getAttribute('data-lang') === 'ml' ? 'ml' : 'en');
   const fetchJSON = async (url, fallback) => {
     try {
       const res = await fetch(url, { cache: 'no-store' });
@@ -81,6 +91,17 @@
       console.warn('Using fallback for', url, e);
       return fallback;
     }
+  };
+  const fetchJSONLocalized = async (baseUrl, fallback) => {
+    // Try a Malayalam variant (file.ml.json) when lang is ml
+    if (getLang() === 'ml') {
+      const mlUrl = baseUrl.replace(/\.json$/, '.ml.json');
+      try {
+        const res = await fetch(mlUrl, { cache: 'no-store' });
+        if (res.ok) return await res.json();
+      } catch (_) { /* ignore and fallback */ }
+    }
+    return fetchJSON(baseUrl, fallback);
   };
   const fetchSanity = async (query, params = {}) => {
     const cfg = CMS.sanity || {};
@@ -104,9 +125,10 @@
   };
 
   // Notices: load from JSON or Sanity
-  (async () => {
+  async function renderNotices() {
     const noticeList = $('#notice-list');
     if (!noticeList) return;
+    noticeList.innerHTML = '';
     let items = [];
     if (CMS.provider === 'sanity') {
       try {
@@ -116,7 +138,7 @@
       }
     }
     if (!items.length) {
-      const data = await fetchJSON('assets/data/notices.json', { items: [] });
+      const data = await fetchJSONLocalized('assets/data/notices.json', { items: [] });
       items = data.items || [];
     }
     items
@@ -134,7 +156,7 @@
       });
     // Ensure any pre-existing skeletons are removed
     try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(noticeList); } catch(_){}
-  })();
+  }
 
   // Year in footer
   const year = $('#year');
@@ -320,9 +342,10 @@
   })();
 
   // Deposits: render from JSON or Sanity
-  (async () => {
+  async function renderDeposits() {
     const container = $('#deposits-grid');
     if (!container) return;
+    container.innerHTML = '';
     let items = [];
     if (CMS.provider === 'sanity') {
       try {
@@ -332,7 +355,7 @@
       }
     }
     if (!items.length) {
-      const data = await fetchJSON('assets/data/deposits.json', { items: [] });
+      const data = await fetchJSONLocalized('assets/data/deposits.json', { items: [] });
       items = data.items || [];
     }
     items.forEach((item) => {
@@ -354,12 +377,13 @@
       container.appendChild(card);
     });
     try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}
-  })();
+  }
 
   // Loans: render from JSON or Sanity
-  (async () => {
+  async function renderLoans() {
     const container = $('#loans-grid');
     if (!container) return;
+    container.innerHTML = '';
     let items = [];
     if (CMS.provider === 'sanity') {
       try {
@@ -369,7 +393,7 @@
       }
     }
     if (!items.length) {
-      const data = await fetchJSON('assets/data/loans.json', { items: [] });
+      const data = await fetchJSONLocalized('assets/data/loans.json', { items: [] });
       items = data.items || [];
     }
     items.forEach((item) => {
@@ -379,12 +403,13 @@
       container.appendChild(card);
     });
     try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}
-  })();
+  }
 
-  // Activities: render from JSON or Sanity
-  (async () => {
+  // Activities: render from JSON or Sanity (no i18n JSON yet)
+  async function renderActivities() {
     const container = $('#activities-list');
     if (!container) return;
+    container.innerHTML = '';
     let items = [];
     if (CMS.provider === 'sanity') {
       try {
@@ -411,12 +436,13 @@
       container.appendChild(card);
     });
     try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}
-  })();
+  }
 
-  // Gallery: render from JSON or Sanity
-  (async () => {
+  // Gallery: render from JSON or Sanity (no i18n JSON yet)
+  async function renderGallery() {
     const container = $('#gallery-grid');
     if (!container) return;
+    container.innerHTML = '';
     let items = [];
     if (CMS.provider === 'sanity') {
       try {
@@ -442,15 +468,16 @@
       container.appendChild(g);
     });
     try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}
-  })();
+  }
 
   // Rates & charges
-  (async () => {
+  async function renderRates() {
     const table = document.getElementById('rates-table');
     if (!table) return;
     const data = await fetchJSON('assets/data/rates.json', null);
     if (!data) return;
     const tbody = table.querySelector('tbody');
+    tbody.innerHTML = '';
     (data.deposits || []).forEach(r => {
       const tr = document.createElement('tr');
       tr.innerHTML = `<td>${r.tenure}</td><td>${r.general}</td><td>${r.senior}</td>`;
@@ -462,9 +489,10 @@
     if (note && data.note) note.textContent = data.note;
     const chargesList = document.getElementById('charges-list');
     if (chargesList) {
+      chargesList.innerHTML = '';
       (data.charges || []).forEach(c => chargesList.appendChild(el('li','',c.text)));
     }
-  })();
+  }
 
   // Mobile sticky actions
   (async () => {
@@ -482,5 +510,17 @@
       mail.href = 'mailto:' + supportEmail;
       mail.setAttribute('aria-label', 'Email Support');
     }
+  })();
+
+  // Kickoff initial renders
+  (async () => {
+    await Promise.all([
+      renderNotices(),
+      renderDeposits(),
+      renderLoans(),
+      renderActivities(),
+      renderGallery(),
+      renderRates()
+    ]);
   })();
 })();
