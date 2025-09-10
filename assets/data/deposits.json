@@ -3,11 +3,11 @@
     {
       "name": {
         "en": "Fixed Deposit",
-        "ml": "ഫിക്സഡ് നിക്ഷേപം"
+        "ml": "സ്ഥിര നിക്ഷേപം"
       },
       "description": {
-        "en": "Lock in competitive returns for a fixed term.",
-        "ml": "നിശ്ചിത കാലയളവിലേക്ക് മികച്ച വരുമാനം ഉറപ്പാക്കുക."
+        "en": "Earn up to 8.5% interest with guaranteed returns. Perfect for risk-free wealth creation.",
+        "ml": "8.5% വരെ പലിശയും ഉറപ്പുള്ള വരുമാനവും. റിസ്ക് ഇല്ലാത്ത സമ്പത്ത് സൃഷ്ടിക്കാൻ മികച്ചത്."
       },
       "features": {
         "en": [
@@ -30,8 +30,8 @@
         "ml": "കറന്റ് അക്കൗണ്ട്"
       },
       "description": {
-        "en": "Ideal for businesses with frequent transactions.",
-        "ml": "സ്ഥിരമായ ഇടപാടുകളുള്ള ബിസിനസുകൾക്ക് അനുയോജ്യം."
+        "en": "Seamless business banking with overdraft facility. Keep your business cash flow smooth.",
+        "ml": "ഓവർഡ്രാഫ്റ്റ് സൗകര്യത്തോടെയുള്ള മികച്ച ബിസിനസ് ബാങ്കിംഗ്. നിങ്ങളുടെ ബിസിനസ് ക്യാഷ് ഫ്ലോ സുഗമമാക്കൂ."
       },
       "features": {
         "en": [
@@ -49,11 +49,11 @@
     {
       "name": {
         "en": "Savings Account",
-        "ml": "സേവിംഗ്സ് അക്കൗണ്ട്"
+        "ml": "സമ്പാദ്യ അക്കൗണ്ട്"
       },
       "description": {
-        "en": "Everyday savings with attractive interest and easy access.",
-        "ml": "ആകർഷകമായ പലിശയും എളുപ്പത്തിലുള്ള പ്രവേശനവുമുള്ള ദൈനംദിന സമ്പാദ്യം."
+        "en": "Zero-balance account with free digital banking. Start saving today with just ₹100!",
+        "ml": "സീറോ ബാലൻസ് അക്കൗണ്ടും സൗജന്യ ഡിജിറ്റൽ ബാങ്കിംഗും. വെറും ₹100 കൊണ്ട് ഇന്ന് തന്നെ സമ്പാദ്യം തുടങ്ങൂ!"
       },
       "features": {
         "en": [
@@ -62,8 +62,8 @@
           "No hidden charges"
         ],
         "ml": [
-          "നോമിനേഷൻ & സംയുക്ത അക്കൗണ്ട്",
-          "പാസ്ബുക്കും എസ്.എം.എസ് അലേർട്ടുകളും",
+          "നാമനിർദ്ദേശം & സംയുക്ത അക്കൗണ്ട്",
+          "പാസ്ബുക്കും എസ്.എം.എസ് മുന്നറിയിപ്പുകളും",
           "മറഞ്ഞിരിക്കുന്ന ചാർജുകളില്ല"
         ]
       }
@@ -71,11 +71,11 @@
     {
       "name": {
         "en": "Recurring Deposit",
-        "ml": "റിക്കറിംഗ് നിക്ഷേപം"
+        "ml": "ആവർത്തന നിക്ഷേപം"
       },
       "description": {
-        "en": "Disciplined monthly saving with competitive returns.",
-        "ml": "മത്സരയോഗ്യമായ വരുമാനത്തോടെ ക്രമമായ പ്രതിമാസ സമ്പാദ്യം."
+        "en": "Save as little as ₹50/month and watch it grow! Perfect for achieving your financial goals.",
+        "ml": "പ്രതിമാസം വെറും ₹50 സേവ് ചെയ്ത് വളരുന്നത് കാണൂ! നിങ്ങളുടെ സാമ്പത്തിക ലക്ഷ്യങ്ങൾ നേടാൻ മികച്ചത്."
       },
       "features": {
         "en": [
@@ -85,7 +85,7 @@
         ],
         "ml": [
           "സൗകര്യപ്രദമായ കാലാവധി",
-          "എളുപ്പമുള്ള സ്റ്റാൻഡിംഗ് നിർദ്ദേശങ്ങൾ",
+          "എളുപ്പമുള്ള സ്ഥിര നിർദ്ദേശങ്ങൾ",
           "ലക്ഷ്യാധിഷ്ഠിത സമ്പാദ്യം"
         ]
       }
@@ -96,8 +96,8 @@
         "ml": "പിഗ്മി നിക്ഷേപം (ദിവസേന)"
       },
       "description": {
-        "en": "Build savings with small daily collections (Pigmy).",
-        "ml": "ചെറിയ ദിവസേന പിരിവുകളിലൂടെ സമ്പാദ്യം വർദ്ധിപ്പിക്കുക."
+        "en": "Door-to-door collection service! Save daily from just ₹20. We come to you!",
+        "ml": "വീട്ടുവാതിൽക്കൽ പിരിവ് സേവനം! പ്രതിദിനം വെറും ₹20 മുതൽ സേവ് ചെയ്യൂ. ഞങ്ങൾ നിങ്ങളുടെ അടുത്തേക്ക് വരുന്നു!"
       },
       "features": {
         "en": [
@@ -107,7 +107,7 @@
         ],
         "ml": [
           "വ്യാപാരികൾക്കും ഗൃഹസ്ഥർക്കും അനുയോജ്യം",
-          "ക്രമീകൃത സൂക്ഷ്മ സമ്പാദ്യം",
+          "അച്ചടക്കമുള്ള ചെറുകിട സമ്പാദ്യം",
           "ലളിതമായ പിൻവലിക്കൽ നിയമങ്ങൾ"
         ]
       }

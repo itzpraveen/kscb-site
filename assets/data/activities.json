@@ -1,15 +1,27 @@
 {
   "items": [
     {
-      "title": "Financial Literacy Camp",
+      "title": {
+        "en": "Financial Literacy Camp",
+        "ml": "സാമ്പത്തിക സാക്ഷരതാ ക്യാമ്പ്"
+      },
       "date": "2025-08-15",
-      "summary": "Awareness session on savings, digital payments, and responsible borrowing.",
+      "summary": {
+        "en": "Free workshop! Learn smart saving strategies, digital banking, and how to build wealth. Refreshments provided.",
+        "ml": "സൗജന്യ വർക്ക്ഷോപ്പ്! സ്മാർട്ട് സേവിംഗ് തന്ത്രങ്ങൾ, ഡിജിറ്റൽ ബാങ്കിംഗ്, സമ്പത്ത് സൃഷ്ടിക്കാനുള്ള വഴികൾ പഠിക്കാം. ലഘുഭക്ഷണം ഉണ്ട്."
+      },
       "image": ""
     },
     {
-      "title": "Kudumbashree SHG Meet",
+      "title": {
+        "en": "Kudumbashree SHG Meet",
+        "ml": "കുടുംബശ്രീ സ്വയം സഹായ സംഘ യോഗം"
+      },
       "date": "2025-07-05",
-      "summary": "Interaction with SHG members on linkage loans and entrepreneurship support.",
+      "summary": {
+        "en": "Special loan offers for women entrepreneurs! Learn about subsidized rates and business growth strategies.",
+        "ml": "സ്ത്രീ സംരംഭകർക്ക് പ്രത്യേക വായ്പാ ഓഫറുകൾ! സബ്സിഡി നിരക്കുകളും ബിസിനസ് വളർച്ചാ തന്ത്രങ്ങളും അറിയൂ."
+      },
       "image": ""
     }
   ]

@@ -103,6 +103,25 @@
     }
     return fetchJSON(baseUrl, fallback);
   };
+
+  // i18n helpers for mixed-structure content (string or { en, ml })
+  const pickLangValue = (val) => {
+    const lang = getLang();
+    if (val && typeof val === 'object' && !Array.isArray(val)) {
+      if (val[lang]) return val[lang];
+      if (val.en) return val.en;
+    }
+    return val;
+  };
+  const pickLangArray = (val) => {
+    if (Array.isArray(val)) return val;
+    if (val && typeof val === 'object') {
+      const lang = getLang();
+      if (Array.isArray(val[lang])) return val[lang];
+      if (Array.isArray(val.en)) return val.en;
+    }
+    return [];
+  };
   const fetchSanity = async (query, params = {}) => {
     const cfg = CMS.sanity || {};
     if (!cfg.projectId || !cfg.dataset) throw new Error('Sanity not configured');
@@ -360,14 +379,17 @@
     }
     items.forEach((item) => {
       const card = el('article', 'card');
-      card.appendChild(el('h3', '', item.name));
-      if (item.description) card.appendChild(el('p', '', item.description));
-      if (Array.isArray(item.features) && item.features.length) {
+      const name = pickLangValue(item.name);
+      const desc = pickLangValue(item.description);
+      const features = pickLangArray(item.features);
+      card.appendChild(el('h3', '', name));
+      if (desc) card.appendChild(el('p', '', desc));
+      if (features.length) {
         const details = el('details');
         const sum = el('summary', '', 'View details');
         details.appendChild(sum);
         const ul = el('ul', 'tick');
-        item.features.forEach((f) => {
+        features.forEach((f) => {
           const li = el('li', '', f);
           ul.appendChild(li);
         });
@@ -398,8 +420,10 @@
     }
     items.forEach((item) => {
       const card = el('article', 'card');
-      card.appendChild(el('h3', '', item.name));
-      if (item.description) card.appendChild(el('p', '', item.description));
+      const name = pickLangValue(item.name);
+      const desc = pickLangValue(item.description);
+      card.appendChild(el('h3', '', name));
+      if (desc) card.appendChild(el('p', '', desc));
       container.appendChild(card);
     });
     try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}

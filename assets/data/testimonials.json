@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "name": {
+        "en": "Rasheed K.M.",
+        "ml": "റഷീദ് കെ.എം."
+      },
+      "role": {
+        "en": "Business Owner, Kuzhimanna",
+        "ml": "ബിസിനസ് ഉടമ, കുഴിമന്ന"
+      },
+      "content": {
+        "en": "The gold loan process was incredibly fast - got the money in just 30 minutes! Their rates are the best in town.",
+        "ml": "സ്വർണ്ണ വായ്പാ പ്രക്രിയ അവിശ്വസനീയമാംവിധം വേഗത്തിലായിരുന്നു - വെറും 30 മിനിറ്റിൽ പണം കിട്ടി! നഗരത്തിലെ ഏറ്റവും മികച്ച നിരക്കുകൾ."
+      },
+      "rating": 5
+    },
+    {
+      "name": {
+        "en": "Fathima Beevi",
+        "ml": "ഫാത്തിമ ബീവി"
+      },
+      "role": {
+        "en": "Teacher, Kizhisseri",
+        "ml": "അധ്യാപിക, കിഴിശ്ശേരി"
+      },
+      "content": {
+        "en": "I've been saving with their pigmy deposit scheme for 3 years. The door-to-door collection is so convenient!",
+        "ml": "3 വർഷമായി അവരുടെ പിഗ്മി നിക്ഷേപ പദ്ധതിയിൽ സേവ് ചെയ്യുന്നു. വീട്ടുവാതിൽക്കൽ പിരിവ് വളരെ സൗകര്യപ്രദമാണ്!"
+      },
+      "rating": 5
+    },
+    {
+      "name": {
+        "en": "Suresh Kumar",
+        "ml": "സുരേഷ് കുമാർ"
+      },
+      "role": {
+        "en": "Farmer, Kuzhimanna",
+        "ml": "കർഷകൻ, കുഴിമന്ന"
+      },
+      "content": {
+        "en": "Got agricultural loan approval same day! The staff helped with all documentation. True community bank.",
+        "ml": "കാർഷിക വായ്പാ അനുമതി അന്നുതന്നെ ലഭിച്ചു! എല്ലാ രേഖകളും തയ്യാറാക്കാൻ സ്റ്റാഫ് സഹായിച്ചു. യഥാർത്ഥ സാമൂഹിക ബാങ്ക്."
+      },
+      "rating": 5
+    },
+    {
+      "name": {
+        "en": "Kudumbashree Unit President",
+        "ml": "കുടുംബശ്രീ യൂണിറ്റ് പ്രസിഡന്റ്"
+      },
+      "role": {
+        "en": "Kizhisseri Unit",
+        "ml": "കിഴിശ്ശേരി യൂണിറ്റ്"
+      },
+      "content": {
+        "en": "The bank's support for our SHG has been amazing. Special interest rates and training programs helped us grow.",
+        "ml": "ഞങ്ങളുടെ സ്വയംസഹായ സംഘത്തിനുള്ള ബാങ്കിന്റെ പിന്തുണ അത്ഭുതകരമാണ്. പ്രത്യേക പലിശനിരക്കും പരിശീലന പരിപാടികളും വളരാൻ സഹായിച്ചു."
+      },
+      "rating": 5
+    }
+  ]
+}
