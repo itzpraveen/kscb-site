@@ -105,6 +105,7 @@
   };
 
   // i18n helpers for mixed-structure content (string or { en, ml })
+  const localize = (en, ml) => (getLang() === 'ml' ? (ml || en) : en);
   const pickLangValue = (val) => {
     const lang = getLang();
     if (val && typeof val === 'object' && !Array.isArray(val)) {
@@ -386,7 +387,7 @@
       if (desc) card.appendChild(el('p', '', desc));
       if (features.length) {
         const details = el('details');
-        const sum = el('summary', '', 'View details');
+        const sum = el('summary', '', localize('View details', 'വിശദാംശങ്ങൾ'));
         details.appendChild(sum);
         const ul = el('ul', 'tick');
         features.forEach((f) => {
