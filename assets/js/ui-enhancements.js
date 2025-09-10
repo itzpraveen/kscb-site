@@ -174,7 +174,7 @@
 
     init() {
       this.createOverlay();
-      this.addSkeletons();
+      // Removed automatic skeleton placeholders per request
     }
 
     createOverlay() {
@@ -192,28 +192,7 @@
       this.overlay.classList.remove('show');
     }
 
-    addSkeletons() {
-      // Add skeleton loaders to dynamic content areas
-      const dynamicContainers = [
-        '#deposits-grid',
-        '#loans-grid',
-        '#activities-list',
-        '#gallery-grid',
-        '#notice-list'
-      ];
-
-      dynamicContainers.forEach(selector => {
-        const container = document.querySelector(selector);
-        if (container && !container.children.length) {
-          // Add skeleton cards
-          for (let i = 0; i < 3; i++) {
-            const skeleton = document.createElement('div');
-            skeleton.className = 'skeleton skeleton-card';
-            container.appendChild(skeleton);
-          }
-        }
-      });
-    }
+    // Skeleton helpers retained for compatibility; not used by default
 
     removeSkeletons(container) {
       const skeletons = container.querySelectorAll('.skeleton');

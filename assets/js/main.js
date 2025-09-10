@@ -115,6 +115,8 @@
         li.appendChild(meta);
         noticeList.appendChild(li);
       });
+    // Ensure any pre-existing skeletons are removed
+    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(noticeList); } catch(_){}
   })();
 
   // Year in footer
@@ -276,7 +278,7 @@
     let data = null;
     if (CMS.provider === 'sanity') {
       try {
-        const r = await fetchSanity("*[_type == 'siteSettings'][0]{org, branches, main_phone, support_email, website}");
+        const r = await fetchSanity("*[_type == 'siteSettings'][0]{org, branches, main_phone, support_email, website, phone, email}");
         data = r || null;
       } catch (e) {
         console.warn('Sanity site failed, falling back', e);
@@ -288,13 +290,15 @@
     // Update footer contact buttons
     const fCall = document.getElementById('footer-call');
     const fMail = document.getElementById('footer-email');
-    if (fCall && data.main_phone) {
-      const tel = data.main_phone.replace(/[^0-9+]/g, '');
+    const mainPhone = data.main_phone || data.phone || (Array.isArray(data.branches) && data.branches[0]?.phone) || '';
+    const supportEmail = data.support_email || data.email || (Array.isArray(data.branches) && data.branches[0]?.email) || '';
+    if (fCall && mainPhone) {
+      const tel = mainPhone.replace(/[^0-9+]/g, '');
       fCall.href = 'tel:' + tel;
       fCall.textContent = 'Call Head Office';
     }
-    if (fMail && data.support_email) {
-      fMail.href = 'mailto:' + data.support_email;
+    if (fMail && supportEmail) {
+      fMail.href = 'mailto:' + supportEmail;
     }
   })();
 
@@ -332,6 +336,7 @@
       }
       container.appendChild(card);
     });
+    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}
   })();
 
   // Loans: render from JSON or Sanity
@@ -356,6 +361,7 @@
       if (item.description) card.appendChild(el('p', '', item.description));
       container.appendChild(card);
     });
+    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}
   })();
 
   // Activities: render from JSON or Sanity
@@ -387,6 +393,7 @@
       if (item.date) card.appendChild(el('div', 'activity-meta', new Date(item.date).toLocaleDateString()));
       container.appendChild(card);
     });
+    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}
   })();
 
   // Gallery: render from JSON or Sanity
@@ -417,6 +424,7 @@
       }
       container.appendChild(g);
     });
+    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}
   })();
 
   // Rates & charges
@@ -446,7 +454,16 @@
     const data = await fetchJSON('assets/data/site.json', null);
     const call = document.getElementById('mActCall');
     const mail = document.getElementById('mActEmail');
-    if (data && call && data.phone) call.href = 'tel:' + data.phone.replace(/[^0-9+]/g,'');
-    if (data && mail && data.email) mail.href = 'mailto:' + data.email;
+    if (!data) return;
+    const mainPhone = data.main_phone || data.phone || (Array.isArray(data.branches) && data.branches[0]?.phone) || '';
+    const supportEmail = data.support_email || data.email || (Array.isArray(data.branches) && data.branches[0]?.email) || '';
+    if (call && mainPhone) {
+      call.href = 'tel:' + mainPhone.replace(/[^0-9+]/g,'');
+      call.setAttribute('aria-label', 'Call Head Office');
+    }
+    if (mail && supportEmail) {
+      mail.href = 'mailto:' + supportEmail;
+      mail.setAttribute('aria-label', 'Email Support');
+    }
   })();
 })();

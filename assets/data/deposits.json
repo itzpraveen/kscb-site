@@ -20,7 +20,7 @@
       ]
     },
     {
-      "name": "Saving Deposit",
+      "name": "Savings Account",
       "description": "Everyday savings with attractive interest and easy access.",
       "features": [
         "Nomination & joint account",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "name": "Recurring Deposits",
+      "name": "Recurring Deposit",
       "description": "Disciplined monthly saving with competitive returns.",
       "features": [
         "Flexible tenure",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "name": "Daily Deposits",
+      "name": "Daily Deposit (Pigmy)",
       "description": "Build savings with small daily collections (Pigmy).",
       "features": [
         "Ideal for traders and households",
@@ -48,4 +48,3 @@
     }
   ]
 }
-

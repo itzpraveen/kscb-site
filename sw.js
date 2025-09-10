@@ -1,12 +1,15 @@
 // Service Worker for KSCB - Offline support and caching
-const CACHE_NAME = 'kscb-v1.0.0';
+const CACHE_NAME = 'kscb-v1.0.1';
 const urlsToCache = [
   'index.html',
+  'offline.html',
   'assets/css/styles.css',
+  'assets/css/animations.css',
   'assets/js/main.js',
   'assets/js/security.js',
   'assets/js/cms.config.js',
   'assets/js/lazy-load.js',
+  'assets/js/ui-enhancements.js',
   'assets/img/logo.png',
   'assets/data/deposits.json',
   'assets/data/loans.json',
