@@ -13,6 +13,7 @@
     if (!nav) return;
     nav.classList.remove('show');
     navToggle && navToggle.setAttribute('aria-expanded', 'false');
+    navToggle && navToggle.classList.remove('is-active');
     document.body.classList.remove('menu-open');
     if (navOverlay) navOverlay.remove();
     navOverlay = null;
@@ -21,6 +22,7 @@
     if (!nav) return;
     nav.classList.add('show');
     navToggle && navToggle.setAttribute('aria-expanded', 'true');
+    navToggle && navToggle.classList.add('is-active');
     document.body.classList.add('menu-open');
     if (!navOverlay) {
       navOverlay = document.createElement('div');
@@ -374,6 +376,8 @@
     const heroCall = document.getElementById('hero-call');
     const heroEmail = document.getElementById('hero-email');
     const heroHours = document.getElementById('hero-hours');
+    const navPhone = document.getElementById('nav-phone');
+    const navHours = document.getElementById('nav-hours');
     const mainPhone = data.main_phone || data.phone || (Array.isArray(data.branches) && data.branches[0]?.phone) || '';
     const supportEmail = data.support_email || data.email || (Array.isArray(data.branches) && data.branches[0]?.email) || '';
     const branchHours = Array.isArray(data.branches) ? data.branches[0]?.hours : null;
@@ -393,22 +397,33 @@
       heroEmail.href = 'mailto:' + supportEmail;
       heroEmail.textContent = supportEmail;
     }
-    if (heroHours && branchHours) {
-      const en = heroHours.querySelector('[lang="en"]');
-      const ml = heroHours.querySelector('[lang="ml"]');
+    if (navPhone && sanitizedPhone) {
+      navPhone.href = 'tel:' + sanitizedPhone;
+      navPhone.textContent = mainPhone;
+    }
+    const updateHoursNode = (node, enText, mlText) => {
+      if (!node) return;
+      const en = node.querySelector('[lang="en"]');
+      if (en) en.textContent = enText;
+      const ml = node.querySelector('[lang="ml"]');
+      if (ml) ml.textContent = mlText;
+    };
+    let enHoursText = 'Mon–Sat, 10:00 AM – 4:00 PM';
+    let mlHoursText = 'തിങ്കൾ–ശനി, രാവിലെ 10 മുതൽ വൈകിട്ട് 4 വരെ';
+    if (branchHours) {
       const weekdays = branchHours.weekdays || '';
       const saturday = branchHours.saturday || '';
-      if (en) {
-        en.textContent = saturday && weekdays
+      if (weekdays || saturday) {
+        enHoursText = saturday && weekdays
           ? `Mon–Fri, ${weekdays} · Sat, ${saturday}`
           : `Mon–Sat, ${weekdays || saturday}`;
-      }
-      if (ml) {
-        ml.textContent = saturday && weekdays
+        mlHoursText = saturday && weekdays
           ? `തിങ്കൾ–വെള്ളി, ${weekdays} · ശനി, ${saturday}`
           : `തിങ്കൾ–ശനി, ${weekdays || saturday}`;
       }
     }
+    updateHoursNode(heroHours, enHoursText, mlHoursText);
+    updateHoursNode(navHours, enHoursText, mlHoursText);
   })();
 
   // Deposits: render from JSON or Sanity
