@@ -371,15 +371,43 @@
     // Update footer contact buttons
     const fCall = document.getElementById('footer-call');
     const fMail = document.getElementById('footer-email');
+    const heroCall = document.getElementById('hero-call');
+    const heroEmail = document.getElementById('hero-email');
+    const heroHours = document.getElementById('hero-hours');
     const mainPhone = data.main_phone || data.phone || (Array.isArray(data.branches) && data.branches[0]?.phone) || '';
     const supportEmail = data.support_email || data.email || (Array.isArray(data.branches) && data.branches[0]?.email) || '';
-    if (fCall && mainPhone) {
-      const tel = mainPhone.replace(/[^0-9+]/g, '');
-      fCall.href = 'tel:' + tel;
+    const branchHours = Array.isArray(data.branches) ? data.branches[0]?.hours : null;
+    const sanitizedPhone = mainPhone ? mainPhone.replace(/[^0-9+]/g, '') : '';
+    if (fCall && sanitizedPhone) {
+      fCall.href = 'tel:' + sanitizedPhone;
       fCall.textContent = 'ഹെഡ് ഓഫീസിലേക്ക് വിളിക്കാം';
     }
     if (fMail && supportEmail) {
       fMail.href = 'mailto:' + supportEmail;
+    }
+    if (heroCall && sanitizedPhone) {
+      heroCall.href = 'tel:' + sanitizedPhone;
+      heroCall.textContent = mainPhone;
+    }
+    if (heroEmail && supportEmail) {
+      heroEmail.href = 'mailto:' + supportEmail;
+      heroEmail.textContent = supportEmail;
+    }
+    if (heroHours && branchHours) {
+      const en = heroHours.querySelector('[lang="en"]');
+      const ml = heroHours.querySelector('[lang="ml"]');
+      const weekdays = branchHours.weekdays || '';
+      const saturday = branchHours.saturday || '';
+      if (en) {
+        en.textContent = saturday && weekdays
+          ? `Mon–Fri, ${weekdays} · Sat, ${saturday}`
+          : `Mon–Sat, ${weekdays || saturday}`;
+      }
+      if (ml) {
+        ml.textContent = saturday && weekdays
+          ? `തിങ്കൾ–വെള്ളി, ${weekdays} · ശനി, ${saturday}`
+          : `തിങ്കൾ–ശനി, ${weekdays || saturday}`;
+      }
     }
   })();
 
