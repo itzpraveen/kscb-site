@@ -1,25 +1,27 @@
 // Service Worker for KSCB - Offline support and caching
-const CACHE_NAME = 'kscb-v1.0.1';
+const ASSET_VERSION = '20240524-1';
+const CACHE_NAME = 'kscb-v1.1.0';
+const versioned = (url) => url.startsWith('http') ? url : `${url}${url.includes('?') ? '&' : '?'}v=${ASSET_VERSION}`;
 const urlsToCache = [
   'index.html',
   'offline.html',
-  'assets/css/styles.css',
-  'assets/css/animations.css',
-  'assets/js/main.js',
-  'assets/js/security.js',
-  'assets/js/cms.config.js',
-  'assets/js/lazy-load.js',
-  'assets/js/ui-enhancements.js',
+  versioned('assets/css/styles.css'),
+  versioned('assets/css/animations.css'),
+  versioned('assets/js/main.js'),
+  versioned('assets/js/security.js'),
+  versioned('assets/js/cms.config.js'),
+  versioned('assets/js/lazy-load.js'),
+  versioned('assets/js/ui-enhancements.js'),
   'assets/img/logo.png',
-  'assets/data/deposits.json',
-  'assets/data/deposits.ml.json',
-  'assets/data/loans.json',
-  'assets/data/loans.ml.json',
-  'assets/data/activities.json',
-  'assets/data/notices.json',
-  'assets/data/notices.ml.json',
-  'assets/data/gallery.json',
-  'assets/data/site.json',
+  versioned('assets/data/deposits.json'),
+  versioned('assets/data/deposits.ml.json'),
+  versioned('assets/data/loans.json'),
+  versioned('assets/data/loans.ml.json'),
+  versioned('assets/data/activities.json'),
+  versioned('assets/data/notices.json'),
+  versioned('assets/data/notices.ml.json'),
+  versioned('assets/data/gallery.json'),
+  versioned('assets/data/site.json'),
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
 ];
 

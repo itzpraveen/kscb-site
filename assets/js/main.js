@@ -4,6 +4,11 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   const CMS = (typeof window !== 'undefined' && window.CMS_CONFIG) ? window.CMS_CONFIG : { provider: 'json' };
+  const ASSET_VERSION = '20240524-1';
+  const withVersion = (url) => {
+    if (!url || /^https?:/i.test(url)) return url;
+    return url + (url.includes('?') ? '&' : '?') + 'v=' + ASSET_VERSION;
+  };
 
   // Mobile navigation toggle with overlay, outside click, and ESC to close
   const navToggle = $('.nav-toggle');
@@ -108,7 +113,7 @@
   const getLang = () => (document.documentElement.getAttribute('data-lang') === 'ml' ? 'ml' : 'en');
   const fetchJSON = async (url, fallback) => {
     try {
-      const res = await fetch(url, { cache: 'no-store' });
+      const res = await fetch(withVersion(url), { cache: 'no-store' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return await res.json();
     } catch (e) {
@@ -121,7 +126,7 @@
     if (getLang() === 'ml') {
       const mlUrl = baseUrl.replace(/\.json$/, '.ml.json');
       try {
-        const res = await fetch(mlUrl, { cache: 'no-store' });
+        const res = await fetch(withVersion(mlUrl), { cache: 'no-store' });
         if (res.ok) return await res.json();
       } catch (_) { /* ignore and fallback */ }
     }
