@@ -472,9 +472,11 @@
   }
 
   // Loans: render from JSON or Sanity
+  let loansRenderToken = 0;
   async function renderLoans() {
     const container = $('#loans-grid');
     if (!container) return;
+    const token = ++loansRenderToken;
     container.innerHTML = '';
     let items = [];
     if (CMS.provider === 'sanity') {
@@ -488,7 +490,12 @@
       const data = await fetchJSONLocalized('assets/data/loans.json', { items: [] });
       items = data.items || [];
     }
+    if (token !== loansRenderToken) return;
+    const seen = new Set();
     items.forEach((item) => {
+      const key = (item.name && typeof item.name === 'object') ? (item.name.en || item.name.ml || JSON.stringify(item.name)) : item.name;
+      if (key && seen.has(key)) return;
+      if (key) seen.add(key);
       const card = el('article', 'card');
       const name = pickLangValue(item.name);
       const desc = pickLangValue(item.description);
