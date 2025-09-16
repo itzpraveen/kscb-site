@@ -408,8 +408,8 @@
       const ml = node.querySelector('[lang="ml"]');
       if (ml) ml.textContent = mlText;
     };
-    let enHoursText = 'Mon–Sat, 10:00 AM – 4:00 PM';
-    let mlHoursText = 'തിങ്കൾ–ശനി, രാവിലെ 10 മുതൽ വൈകിട്ട് 4 വരെ';
+    let enHoursText = 'Mon–Fri, 9:30 AM – 4:30 PM · Sat, 9:30 AM – 1:30 PM';
+    let mlHoursText = 'തിങ്കൾ–വെള്ളി, 9:30 AM – 4:30 PM · ശനി, 9:30 AM – 1:30 PM';
     if (branchHours) {
       const weekdays = branchHours.weekdays || '';
       const saturday = branchHours.saturday || '';
@@ -443,7 +443,11 @@
       const data = await fetchJSONLocalized('assets/data/deposits.json', { items: [] });
       items = data.items || [];
     }
+    const seen = new Set();
     items.forEach((item) => {
+      const key = (item.name && typeof item.name === 'object') ? (item.name.en || item.name.ml || JSON.stringify(item.name)) : item.name;
+      if (key && seen.has(key)) return;
+      if (key) seen.add(key);
       const card = el('article', 'card');
       const name = pickLangValue(item.name);
       const desc = pickLangValue(item.description);
