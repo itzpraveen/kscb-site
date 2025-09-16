@@ -620,8 +620,6 @@
   (async () => {
     await Promise.all([
       renderNotices(),
-      renderDeposits(),
-      renderLoans(),
       renderActivities(),
       renderGallery(),
       renderRates()
