@@ -430,6 +430,7 @@ details[open] summary::after { content: '▴'; }
     z-index: 999;
     overflow-y: auto;
     animation: slideDown 200ms ease;
+    min-height: calc(100vh - var(--header-h));
   }
   .nav-menu { display: grid; gap: var(--space-3); }
   .nav-menu a {
