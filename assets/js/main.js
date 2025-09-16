@@ -4,7 +4,7 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   const CMS = (typeof window !== 'undefined' && window.CMS_CONFIG) ? window.CMS_CONFIG : { provider: 'json' };
-  const ASSET_VERSION = '20240524-1';
+  const ASSET_VERSION = '20240524-2';
   const withVersion = (url) => {
     if (!url || /^https?:/i.test(url)) return url;
     return url + (url.includes('?') ? '&' : '?') + 'v=' + ASSET_VERSION;

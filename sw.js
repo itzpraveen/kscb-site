@@ -1,6 +1,6 @@
 // Service Worker for KSCB - Offline support and caching
-const ASSET_VERSION = '20240524-1';
-const CACHE_NAME = 'kscb-v1.1.0';
+const ASSET_VERSION = '20240524-2';
+const CACHE_NAME = 'kscb-v1.1.1';
 const versioned = (url) => url.startsWith('http') ? url : `${url}${url.includes('?') ? '&' : '?'}v=${ASSET_VERSION}`;
 const urlsToCache = [
   'index.html',
