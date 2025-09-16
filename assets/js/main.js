@@ -427,9 +427,11 @@
   })();
 
   // Deposits: render from JSON or Sanity
+  let depositsRenderToken = 0;
   async function renderDeposits() {
     const container = $('#deposits-grid');
     if (!container) return;
+    const token = ++depositsRenderToken;
     container.innerHTML = '';
     let items = [];
     if (CMS.provider === 'sanity') {
@@ -443,6 +445,7 @@
       const data = await fetchJSONLocalized('assets/data/deposits.json', { items: [] });
       items = data.items || [];
     }
+    if (token !== depositsRenderToken) return;
     const seen = new Set();
     items.forEach((item) => {
       const key = (item.name && typeof item.name === 'object') ? (item.name.en || item.name.ml || JSON.stringify(item.name)) : item.name;
