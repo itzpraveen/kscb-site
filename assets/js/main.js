@@ -4,7 +4,7 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   const CMS = (typeof window !== 'undefined' && window.CMS_CONFIG) ? window.CMS_CONFIG : { provider: 'json' };
-  const ASSET_VERSION = '20240524-7';
+  const ASSET_VERSION = '20240524-8';
   const withVersion = (url) => {
     if (!url || /^https?:/i.test(url)) return url;
     return url + (url.includes('?') ? '&' : '?') + 'v=' + ASSET_VERSION;
@@ -174,9 +174,11 @@
   };
 
   // Notices: load from JSON or Sanity
+  let noticesRenderToken = 0;
   async function renderNotices() {
     const noticeList = $('#notice-list');
     if (!noticeList) return;
+    const token = ++noticesRenderToken;
     noticeList.innerHTML = '';
     let items = [];
     if (CMS.provider === 'sanity') {
@@ -190,10 +192,19 @@
       const data = await fetchJSONLocalized('assets/data/notices.json', { items: [] });
       items = data.items || [];
     }
+    if (token !== noticesRenderToken) return;
+    const seen = new Set();
     items
       .slice()
       .sort((a, b) => (a.date < b.date ? 1 : -1))
       .forEach((n) => {
+        const key = JSON.stringify({
+          title: n.title,
+          date: n.date,
+          link: n.link
+        });
+        if (seen.has(key)) return;
+        seen.add(key);
         const li = el('li');
         const body = el('div', 'notice-body');
         const titleText = pickLangValue(n.title);
@@ -650,7 +661,6 @@
   // Kickoff initial renders
   (async () => {
     await Promise.all([
-      renderNotices(),
       renderActivities(),
       renderGallery(),
       renderRates()
