@@ -1,6 +1,6 @@
 // Service Worker for KSCB - Offline support and caching
-const ASSET_VERSION = '20240524-8';
-const CACHE_NAME = 'kscb-v1.1.7';
+const ASSET_VERSION = '20240524-9';
+const CACHE_NAME = 'kscb-v1.1.8';
 const versioned = (url) => url.startsWith('http') ? url : `${url}${url.includes('?') ? '&' : '?'}v=${ASSET_VERSION}`;
 const urlsToCache = [
   'index.html',
@@ -13,6 +13,11 @@ const urlsToCache = [
   versioned('assets/js/lazy-load.js'),
   versioned('assets/js/ui-enhancements.js'),
   'assets/img/logo.png',
+  versioned('assets/img/svg/hero-illustration.svg'),
+  versioned('assets/img/svg/icon-deposit.svg'),
+  versioned('assets/img/svg/icon-loan.svg'),
+  versioned('assets/img/svg/icon-digital.svg'),
+  versioned('assets/img/svg/icon-care.svg'),
   versioned('assets/docs/circular-2025-03-04.pdf'),
   versioned('assets/data/deposits.json'),
   versioned('assets/data/deposits.ml.json'),
