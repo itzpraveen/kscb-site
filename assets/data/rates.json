@@ -1,15 +1,17 @@
 {
-  "effective_from": "2025-10-01",
+  "effective_from": "2025-03-04",
   "deposits": [
-    { "tenure": "6 months", "general": "7.00%", "senior": "7.50%" },
-    { "tenure": "12 months", "general": "7.25%", "senior": "7.75%" },
-    { "tenure": "24 months", "general": "7.15%", "senior": "7.65%" }
+    { "tenure": "15–45 days", "general": "6.25%", "senior": "6.75%" },
+    { "tenure": "46–90 days", "general": "6.75%", "senior": "7.25%" },
+    { "tenure": "91–179 days", "general": "7.25%", "senior": "7.75%" },
+    { "tenure": "180–364 days", "general": "7.75%", "senior": "8.25%" },
+    { "tenure": "1–2 years", "general": "8.00%", "senior": "8.50%" },
+    { "tenure": "> 2 years", "general": "8.00%", "senior": "8.50%" }
   ],
   "charges": [
     { "text": "NEFT/RTGS as per RBI/Bank schedule (at branch)" },
     { "text": "IMPS (if enabled) — nominal fee slabs" },
     { "text": "Locker rent — as per size; caution deposit applies" }
   ],
-  "note": "Indicative; subject to change. Please contact the branch for official rates and charges."
+  "note": "As per Registrar circular 9/2025 (04 Mar 2025). Actual rates subject to approval at the branch."
 }
-

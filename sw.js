@@ -13,6 +13,7 @@ const urlsToCache = [
   versioned('assets/js/lazy-load.js'),
   versioned('assets/js/ui-enhancements.js'),
   'assets/img/logo.png',
+  versioned('assets/docs/circular-2025-03-04.pdf'),
   versioned('assets/data/deposits.json'),
   versioned('assets/data/deposits.ml.json'),
   versioned('assets/data/loans.json'),

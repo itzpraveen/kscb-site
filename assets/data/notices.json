@@ -1,5 +1,13 @@
 {
   "items": [
+    {
+      "title": {
+        "en": "Registrar Circular 9/2025 – Updated deposit interest ceilings",
+        "ml": "രജിസ്ട്രാർ സർക്കുലർ 9/2025 – നിക്ഷേപ പലിശ പരമാവധി നിരക്കുകൾ"
+      },
+      "date": "2025-03-04",
+      "link": "assets/docs/circular-2025-03-04.pdf?v=20240524-5"
+    },
     { 
       "title": {
         "en": "Revised Fixed Deposit Rates w.e.f. 01 Oct 2025",
@@ -26,4 +34,3 @@
     }
   ]
 }
-
