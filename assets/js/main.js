@@ -4,7 +4,7 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   const CMS = (typeof window !== 'undefined' && window.CMS_CONFIG) ? window.CMS_CONFIG : { provider: 'json' };
-  const ASSET_VERSION = '20240524-5';
+  const ASSET_VERSION = '20240524-6';
   const withVersion = (url) => {
     if (!url || /^https?:/i.test(url)) return url;
     return url + (url.includes('?') ? '&' : '?') + 'v=' + ASSET_VERSION;
@@ -195,11 +195,37 @@
       .sort((a, b) => (a.date < b.date ? 1 : -1))
       .forEach((n) => {
         const li = el('li');
-        const title = el('div', 'title', `<a href="${n.link || '#'}">${n.title}</a>`);
+        const body = el('div', 'notice-body');
+        const titleText = pickLangValue(n.title);
+        const descriptionText = pickLangValue(n.description);
+        const linkLabel = pickLangValue(n.link_label);
+        const hasCta = Boolean(n.link);
+
+        const title = el('div', 'title');
+        if (hasCta && !linkLabel) {
+          title.innerHTML = `<a href="${n.link}" target="_blank" rel="noopener noreferrer">${titleText}</a>`;
+        } else {
+          title.textContent = titleText;
+        }
+        body.appendChild(title);
+
+        if (descriptionText) {
+          body.appendChild(el('p', 'description', descriptionText));
+        }
+
+        if (hasCta) {
+          const cta = el('a', 'notice-cta', linkLabel || localize('View details', 'വിശദാംശങ്ങൾ'));
+          cta.href = n.link;
+          cta.target = '_blank';
+          cta.rel = 'noopener noreferrer';
+          body.appendChild(cta);
+        }
+
         const meta = el('div', 'meta');
         const d = n.date ? new Date(n.date) : null;
         meta.textContent = d ? d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' }) : '';
-        li.appendChild(title);
+
+        li.appendChild(body);
         li.appendChild(meta);
         noticeList.appendChild(li);
       });

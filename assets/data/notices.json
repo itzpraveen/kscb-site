@@ -5,8 +5,16 @@
         "en": "Registrar Circular 9/2025 – Updated deposit interest ceilings",
         "ml": "രജിസ്ട്രാർ സർക്കുലർ 9/2025 – നിക്ഷേപ പലിശ പരമാവധി നിരക്കുകൾ"
       },
+      "description": {
+        "en": "Official instructions from the Registrar of Co-operatives revising maximum interest allowed on deposits (effective 04 Mar 2025).",
+        "ml": "സഹകരണ രജിസ്ട്രാർ 04 മാർച്ച് 2025 മുതൽ പ്രാബല്യത്തിൽ വരുത്തിയ നിക്ഷേപ പരമാവധി പലിശ നിരക്കുകൾ സംബന്ധിച്ച സർക്കുലർ."
+      },
+      "link_label": {
+        "en": "Download circular (PDF)",
+        "ml": "സർക്കുലർ ഡൗൺലോഡ് (PDF)"
+      },
       "date": "2025-03-04",
-      "link": "assets/docs/circular-2025-03-04.pdf?v=20240524-5"
+      "link": "assets/docs/circular-2025-03-04.pdf?v=20240524-6"
     },
     { 
       "title": {

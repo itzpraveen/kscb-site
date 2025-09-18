@@ -340,9 +340,8 @@ a:hover { text-decoration: underline; }
 .notices { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
 .notices li {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 12px;
-  align-items: center;
   padding: var(--space-4) var(--space-5);
   background: linear-gradient(180deg, rgba(17, 134, 58, 0.06), rgba(17, 134, 58, 0));
   border: 1px solid rgba(17, 134, 58, 0.18);
@@ -363,6 +362,22 @@ a:hover { text-decoration: underline; }
 .notices .title { font-weight: 600; }
 .notices .title a { color: inherit; }
 .notices .meta { color: var(--muted); font-size: 14px; white-space: nowrap; }
+.notice-body { display: grid; gap: 6px; align-content: start; }
+.notices .description { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.notice-cta {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(17,134,58,0.12);
+  color: var(--brand-700);
+  font-weight: 600;
+  border: 1px solid rgba(17,134,58,0.22);
+  transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+.notice-cta:hover { background: rgba(17,134,58,0.22); color: var(--brand-700); text-decoration: none; box-shadow: 0 10px 20px rgba(17,134,58,0.16); }
+.notices .meta { align-self: flex-end; }
 @media (max-width: 600px) {
   .notices li { flex-direction: column; align-items: flex-start; }
   .notices .meta { white-space: normal; }
