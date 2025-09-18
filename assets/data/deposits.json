@@ -111,50 +111,6 @@
           "ലളിതമായ പിൻവലിക്കൽ നിയമങ്ങൾ"
         ]
       }
-    },
-    {
-      "name": {
-        "en": "Junior Savings",
-        "ml": "കുട്ടികളുടെ സംരക്ഷണം"
-      },
-      "description": {
-        "en": "Introduce banking early with pocket-money savings for students.",
-        "ml": "വിദ്യാർത്ഥികൾക്കായി പോക്കറ്റ്മണി സേവിംഗ്സുമായി ബാങ്കിംഗ് പരിചയപ്പെടുത്താം."
-      },
-      "features": {
-        "en": [
-          "Start with just ₹100",
-          "Free passbook with colourful stickers",
-          "Birthday surprise interest bonus"
-        ],
-        "ml": [
-          "വെറും ₹100 കൊണ്ട് തുടങ്ങാം",
-          "സ്റ്റിക്കറുകളോടുള്ള പാസ്ബുക്ക്",
-          "ജന്മദിന പ്രത്യേക പലിശ ബോണസ്"
-        ]
-      }
-    },
-    {
-      "name": {
-        "en": "Festive Saver",
-        "ml": "പെരുന്നാൾ സേവിങ്സ്"
-      },
-      "description": {
-        "en": "Seasonal deposit with bonus interest during festival months.",
-        "ml": "പെരുന്നാൾ മാസങ്ങളിൽ അധിക പലിശ ലഭ്യമായ സീസണൽ നിക്ഷേപ പദ്ധതി."
-      },
-      "features": {
-        "en": [
-          "Flexible 3 or 6 month terms",
-          "Festival bonus payout",
-          "Auto credit to savings"
-        ],
-        "ml": [
-          "3 അല്ലെങ്കിൽ 6 മാസ കാലാവധി",
-          "പെരുന്നാൾ ബോണസ് പലിശ",
-          "സേവിങ്സ് അക്കൗണ്ടിലേക്ക് ഓട്ടോ ക്രെഡിറ്റ്"
-        ]
-      }
     }
   ]
 }
