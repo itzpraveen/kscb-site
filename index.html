@@ -9,14 +9,24 @@
     <meta property="og:title" content="Kuzhimanna Service Co-operative Bank" />
     <meta property="og:description" content="Local banking for Kuzhimanna & Kizhisseri. Secure. Fast. Trusted." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="assets/img/logo.png" />
+    <meta property="og:url" content="https://kuzhimannaservicebank.com/" />
+    <meta property="og:image" content="https://kuzhimannaservicebank.com/assets/img/logo.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kuzhimanna Service Co-operative Bank" />
+    <meta name="twitter:description" content="Local banking for Kuzhimanna & Kizhisseri. Secure. Fast. Trusted." />
+    <meta name="twitter:image" content="https://kuzhimannaservicebank.com/assets/img/logo.png" />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://kuzhimannaservicebank.com/" />
     <link rel="icon" type="image/png" href="assets/img/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css?v=20240524-8" />
-    <link rel="stylesheet" href="assets/css/animations.css?v=20240524-8" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=20240524-10" />
+    <link rel="stylesheet" href="assets/css/animations.css?v=20240524-10" />
+    <link rel="alternate" hreflang="en" href="https://kuzhimannaservicebank.com/" />
+    <link rel="alternate" hreflang="ml" href="https://kuzhimannaservicebank.com/?lang=ml" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
@@ -456,17 +466,17 @@
 
     <button id="backToTop" class="backtotop" aria-label="Back to top" title="Back to top">↑</button>
 
-    <script src="assets/js/security.js?v=20240524-8"></script>
-    <script src="assets/js/cms.config.js?v=20240524-8"></script>
-    <script src="assets/js/lazy-load.js?v=20240524-8"></script>
-    <script src="assets/js/ui-enhancements.js?v=20240524-8"></script>
-    <script src="assets/js/main.js?v=20240524-8" defer></script>
+    <script src="assets/js/security.js?v=20240524-10"></script>
+    <script src="assets/js/cms.config.js?v=20240524-10"></script>
+    <script src="assets/js/lazy-load.js?v=20240524-10"></script>
+    <script src="assets/js/ui-enhancements.js?v=20240524-10"></script>
+    <script src="assets/js/main.js?v=20240524-10" defer></script>
     
     <!-- Service Worker Registration -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('sw.js?v=20240524-8')
+          navigator.serviceWorker.register('sw.js?v=20240524-10')
             .then(registration => console.log('SW registered:', registration.scope))
             .catch(err => console.log('SW registration failed:', err));
         });
@@ -482,6 +492,9 @@
       "alternateName": "KSCB",
       "url": "https://kuzhimannaservicebank.com",
       "logo": "https://kuzhimannaservicebank.com/assets/img/logo.png",
+      "image": [
+        "https://kuzhimannaservicebank.com/assets/img/logo.png"
+      ],
       "description": "Community-first banking with secure deposits, quick loans, and modern digital services in Kuzhimanna, Kerala.",
       "address": {
         "@type": "PostalAddress",
@@ -496,12 +509,20 @@
         "contactType": "customer service",
         "availableLanguage": ["English", "Malayalam"]
       },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "10:00",
-        "closes": "16:00"
-      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:30",
+          "closes": "16:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:30",
+          "closes": "13:30"
+        }
+      ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Banking Services",

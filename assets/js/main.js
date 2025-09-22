@@ -4,7 +4,7 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   const CMS = (typeof window !== 'undefined' && window.CMS_CONFIG) ? window.CMS_CONFIG : { provider: 'json' };
-  const ASSET_VERSION = '20240524-8';
+  const ASSET_VERSION = '20240524-10';
   const withVersion = (url) => {
     if (!url || /^https?:/i.test(url)) return url;
     return url + (url.includes('?') ? '&' : '?') + 'v=' + ASSET_VERSION;
@@ -65,6 +65,11 @@
     document.documentElement.setAttribute('data-lang', lang);
     if (langToggleBtn) langToggleBtn.textContent = lang === 'ml' ? 'EN' : 'മലയാളം';
     try { localStorage.setItem(LANG_KEY, lang); } catch (_) {}
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', url.toString());
+    }
     // Re-render dynamic sections for the selected language
     Promise.resolve().then(() => {
       if (typeof renderNotices === 'function') renderNotices();
@@ -76,7 +81,13 @@
     });
   };
   const savedLang = (() => { try { return localStorage.getItem(LANG_KEY); } catch(_) { return null; } })();
-  applyLang(savedLang === 'ml' ? 'ml' : 'en');
+  const urlLang = (() => {
+    if (typeof window === 'undefined') return null;
+    const param = new URLSearchParams(window.location.search).get('lang');
+    return param === 'ml' ? 'ml' : param === 'en' ? 'en' : null;
+  })();
+  const initialLang = urlLang || (savedLang === 'ml' ? 'ml' : 'en');
+  applyLang(initialLang);
   if (langToggleBtn) {
     langToggleBtn.addEventListener('click', () => {
       const cur = document.documentElement.getAttribute('data-lang') === 'ml' ? 'ml' : 'en';
