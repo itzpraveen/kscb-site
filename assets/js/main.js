@@ -63,6 +63,7 @@
   const langToggleBtn = document.getElementById('langToggle');
   const applyLang = (lang) => {
     document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', lang === 'ml' ? 'ml' : 'en');
     if (langToggleBtn) langToggleBtn.textContent = lang === 'ml' ? 'EN' : 'മലയാളം';
     try { localStorage.setItem(LANG_KEY, lang); } catch (_) {}
     if (typeof window !== 'undefined') {
@@ -367,7 +368,7 @@
   // Back-to-top button and active nav highlighting
   const backBtn = document.getElementById('backToTop');
   const navLinks = Array.from(document.querySelectorAll('#primary-nav a[href^="#"]'));
-  const sections = ['home','products','services','activities','notices','contact']
+  const sections = ['home','products','deposits','loans','services','rates','activities','notices','branches','faq','contact']
     .map(id => document.getElementById(id))
     .filter(Boolean);
 

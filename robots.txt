@@ -1,12 +1,9 @@
 # Robots.txt for Kuzhimanna Service Co-operative Bank
 # https://kuzhimannaservicebank.com/
 
-# Allow all crawlers
+# Allow all crawlers with sensible exclusions
 User-agent: *
 Allow: /
-
-# Disallow admin areas
-User-agent: *
 Disallow: /admin/
 Disallow: /api/
 Disallow: /private/
@@ -19,10 +16,7 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-# Sitemap location
-Sitemap: https://kuzhimannaservicebank.com/sitemap.xml
-
-# Crawl-delay for less important bots
+# Crawl-delay guidance for aggressive bots
 User-agent: SemrushBot
 Crawl-delay: 10
 
@@ -38,3 +32,6 @@ Disallow: /
 
 User-agent: PetalBot
 Disallow: /
+
+# Sitemap location
+Sitemap: https://kuzhimannaservicebank.com/sitemap.xml
