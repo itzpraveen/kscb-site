@@ -86,7 +86,11 @@ a:hover { text-decoration: underline; }
 .brand img { display: block; }
 .brand.small { gap: 10px; }
 .brand.small img { width: 28px; height: 28px; }
-.brand-text { display: flex; flex-direction: column; font-weight: 600; letter-spacing: 0.2px; line-height: 1.1; }
+.brand-text { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; font-weight: 600; letter-spacing: 0.2px; line-height: 1.1; }
+.brand-line-primary { font-size: 1.08rem; font-weight: 700; }
+.brand-line-secondary { font-size: 0.92rem; font-weight: 500; color: var(--ink-600, #233139); }
+.brand.small .brand-line-primary { font-size: 1rem; }
+.brand.small .brand-line-secondary { font-size: 0.86rem; }
 .nav-links { display: flex; align-items: center; gap: 22px; transition: transform 200ms ease, opacity 200ms ease; }
 .nav-menu { display: flex; align-items: center; gap: 18px; }
 .nav-actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
