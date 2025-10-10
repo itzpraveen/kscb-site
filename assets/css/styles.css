@@ -82,12 +82,11 @@ a:hover { text-decoration: underline; }
   justify-content: space-between;
   height: 72px;
 }
-.brand { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; color: var(--ink); text-align: center; }
+.brand { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); }
 .brand img { display: block; }
-.brand.small { flex-direction: row; align-items: center; gap: 10px; text-align: left; }
+.brand.small { gap: 10px; }
 .brand.small img { width: 28px; height: 28px; }
-.brand.small .brand-text { text-align: left; }
-.brand-text { font-weight: 600; letter-spacing: 0.2px; line-height: 1.2; }
+.brand-text { display: flex; flex-direction: column; font-weight: 600; letter-spacing: 0.2px; line-height: 1.1; }
 .nav-links { display: flex; align-items: center; gap: 22px; transition: transform 200ms ease, opacity 200ms ease; }
 .nav-menu { display: flex; align-items: center; gap: 18px; }
 .nav-actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
