@@ -65,7 +65,7 @@
     document.documentElement.setAttribute('data-lang', lang);
     document.documentElement.setAttribute('lang', lang === 'ml' ? 'ml' : 'en');
     if (langToggleBtn) langToggleBtn.textContent = lang === 'ml' ? 'EN' : 'മലയാളം';
-    try { localStorage.setItem(LANG_KEY, lang); } catch (_) {}
+    try { localStorage.setItem(LANG_KEY, lang); } catch (_) { }
     if (typeof window !== 'undefined') {
       const url = new URL(window.location.href);
       url.searchParams.set('lang', lang);
@@ -81,7 +81,7 @@
       if (typeof renderRates === 'function') renderRates();
     });
   };
-  const savedLang = (() => { try { return localStorage.getItem(LANG_KEY); } catch(_) { return null; } })();
+  const savedLang = (() => { try { return localStorage.getItem(LANG_KEY); } catch (_) { return null; } })();
   const urlLang = (() => {
     if (typeof window === 'undefined') return null;
     const param = new URLSearchParams(window.location.search).get('lang');
@@ -253,7 +253,7 @@
         noticeList.appendChild(li);
       });
     // Ensure any pre-existing skeletons are removed
-    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(noticeList); } catch(_){}
+    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(noticeList); } catch (_) { }
   }
 
   // Year in footer
@@ -293,7 +293,7 @@
   // Enhanced enquiry form handler with security
   const enquiryBtn = $('#enquiry-submit');
   const enquiryForm = enquiryBtn?.closest('form');
-  
+
   if (enquiryBtn && enquiryForm) {
     // Add CSRF token to form
     const csrfInput = document.createElement('input');
@@ -301,16 +301,16 @@
     csrfInput.name = 'csrf_token';
     csrfInput.value = SecurityUtils.getCSRFToken();
     enquiryForm.appendChild(csrfInput);
-    
+
     enquiryBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      
+
       // Check rate limiting
       if (!SecurityUtils.canSubmitForm('enquiry')) {
         showNotification('Please wait 30 seconds before submitting again.', 'warning');
         return;
       }
-      
+
       // Collect and validate form data
       const formData = {
         name: $('#name')?.value?.trim(),
@@ -318,18 +318,18 @@
         message: $('#message')?.value?.trim(),
         csrf_token: csrfInput.value
       };
-      
+
       const validation = SecurityUtils.validateForm(formData);
-      
+
       if (!validation.valid) {
         showNotification(validation.errors.join('<br>'), 'error');
         return;
       }
-      
+
       // Show loading state
       enquiryBtn.disabled = true;
       enquiryBtn.textContent = 'അയക്കുന്നു...';
-      
+
       // Simulate form submission (replace with actual backend call)
       setTimeout(() => {
         enquiryBtn.disabled = false;
@@ -339,12 +339,12 @@
       }, 1000);
     });
   }
-  
+
   // Notification system
   function showNotification(message, type = 'info') {
     const existing = $('.notification');
     if (existing) existing.remove();
-    
+
     const notification = el('div', `notification notification-${type}`);
     notification.innerHTML = SecurityUtils.escapeHtml(message);
     notification.style.cssText = `
@@ -360,7 +360,7 @@
       z-index: 1000;
       animation: slideIn 0.3s ease;
     `;
-    
+
     document.body.appendChild(notification);
     setTimeout(() => notification.remove(), 5000);
   }
@@ -368,7 +368,7 @@
   // Back-to-top button and active nav highlighting
   const backBtn = document.getElementById('backToTop');
   const navLinks = Array.from(document.querySelectorAll('#primary-nav a[href^="#"]'));
-  const sections = ['home','products','deposits','loans','services','rates','activities','notices','branches','faq','contact']
+  const sections = ['home', 'products', 'deposits', 'loans', 'services', 'rates', 'activities', 'notices', 'branches', 'faq', 'contact']
     .map(id => document.getElementById(id))
     .filter(Boolean);
 
@@ -423,7 +423,7 @@
     }
     if (!data) data = await fetchJSON('assets/data/site.json', null);
     if (!data) return;
-    
+
     // Update footer contact buttons
     const fCall = document.getElementById('footer-call');
     const fMail = document.getElementById('footer-email');
@@ -490,7 +490,7 @@
     let items = [];
     if (CMS.provider === 'sanity') {
       try {
-        items = await fetchSanity("*[_type == 'deposit'] | order(_createdAt desc){name, description, features}");
+        items = await fetchSanity("*[_type == 'deposit'] | order(_createdAt desc){name, description, features, 'image': image.asset->url}");
       } catch (e) {
         console.warn('Sanity deposits failed, falling back', e);
       }
@@ -506,12 +506,30 @@
       if (key && seen.has(key)) return;
       if (key) seen.add(key);
       const card = el('article', 'card');
+
+      // Image support
+      if (item.image) {
+        const wrapper = el('div', 'card-media-wrapper');
+        const img = el('img', 'card-img-top');
+        img.src = item.image;
+        img.alt = item.name && item.name.en ? item.name.en : '';
+        wrapper.appendChild(img);
+        card.appendChild(wrapper);
+      } else {
+        // Fallback or no image
+      }
+
+      const body = el('div', 'card-body');
       const name = pickLangValue(item.name);
       const desc = pickLangValue(item.description);
       const features = pickLangArray(item.features);
-      card.appendChild(el('h3', '', name));
-      if (desc) card.appendChild(el('p', '', desc));
+
+      body.appendChild(el('h3', '', name));
+      if (desc) body.appendChild(el('p', '', desc));
+
       if (features.length) {
+        // Show features either as details or list. If image present, maybe simple list? 
+        // Keeping original behavior: Details for visual cleanup.
         const details = el('details');
         const sum = el('summary', '', localize('View details', 'വിശദാംശങ്ങൾ'));
         details.appendChild(sum);
@@ -521,11 +539,12 @@
           ul.appendChild(li);
         });
         details.appendChild(ul);
-        card.appendChild(details);
+        body.appendChild(details);
       }
+      card.appendChild(body);
       container.appendChild(card);
     });
-    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}
+    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch (_) { }
   }
 
   // Loans: render from JSON or Sanity
@@ -538,7 +557,7 @@
     let items = [];
     if (CMS.provider === 'sanity') {
       try {
-        items = await fetchSanity("*[_type == 'loan'] | order(_createdAt desc){name, description}");
+        items = await fetchSanity("*[_type == 'loan'] | order(_createdAt desc){name, description, 'image': image.asset->url}");
       } catch (e) {
         console.warn('Sanity loans failed, falling back', e);
       }
@@ -554,13 +573,27 @@
       if (key && seen.has(key)) return;
       if (key) seen.add(key);
       const card = el('article', 'card');
+
+      if (item.image) {
+        const wrapper = el('div', 'card-media-wrapper');
+        const img = el('img', 'card-img-top');
+        img.src = item.image;
+        img.alt = item.name && item.name.en ? item.name.en : '';
+        wrapper.appendChild(img);
+        card.appendChild(wrapper);
+      }
+
+      const body = el('div', 'card-body');
       const name = pickLangValue(item.name);
       const desc = pickLangValue(item.description);
-      card.appendChild(el('h3', '', name));
-      if (desc) card.appendChild(el('p', '', desc));
+
+      body.appendChild(el('h3', '', name));
+      if (desc) body.appendChild(el('p', '', desc));
+
+      card.appendChild(body);
       container.appendChild(card);
     });
-    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}
+    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch (_) { }
   }
 
   // Activities: render from JSON or Sanity (no i18n JSON yet)
@@ -593,7 +626,7 @@
       if (item.date) card.appendChild(el('div', 'activity-meta', new Date(item.date).toLocaleDateString()));
       container.appendChild(card);
     });
-    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}
+    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch (_) { }
   }
 
   // Gallery: render from JSON or Sanity (no i18n JSON yet)
@@ -625,7 +658,7 @@
       }
       container.appendChild(g);
     });
-    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch(_){}
+    try { window.UILoading && window.UILoading.removeSkeletons && window.UILoading.removeSkeletons(container); } catch (_) { }
   }
 
   // Rates & charges
@@ -648,7 +681,7 @@
     const chargesList = document.getElementById('charges-list');
     if (chargesList) {
       chargesList.innerHTML = '';
-      (data.charges || []).forEach(c => chargesList.appendChild(el('li','',c.text)));
+      (data.charges || []).forEach(c => chargesList.appendChild(el('li', '', c.text)));
     }
   }
 
@@ -661,7 +694,7 @@
     const mainPhone = data.main_phone || data.phone || (Array.isArray(data.branches) && data.branches[0]?.phone) || '';
     const supportEmail = data.support_email || data.email || (Array.isArray(data.branches) && data.branches[0]?.email) || '';
     if (call && mainPhone) {
-      call.href = 'tel:' + mainPhone.replace(/[^0-9+]/g,'');
+      call.href = 'tel:' + mainPhone.replace(/[^0-9+]/g, '');
       call.setAttribute('aria-label', 'ഹെഡ് ഓഫീസിലേക്ക് വിളിക്കാം');
     }
     if (mail && supportEmail) {

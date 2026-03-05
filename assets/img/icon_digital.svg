@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <circle cx="50" cy="50" r="48" fill="#f4faf5" />
+  <!-- Phone -->
+  <rect x="35" y="25" width="30" height="50" rx="4" fill="#11863A" />
+  <rect x="38" y="30" width="24" height="35" fill="#fff" />
+  <circle cx="50" cy="70" r="2" fill="#fff" />
+  <!-- Screen Elements -->
+  <rect x="40" y="35" width="20" height="4" fill="#e3e8ef" />
+  <rect x="40" y="42" width="20" height="4" fill="#e3e8ef" />
+  <circle cx="50" cy="55" r="6" fill="#4E2F8A" opacity="0.8" />
+</svg>

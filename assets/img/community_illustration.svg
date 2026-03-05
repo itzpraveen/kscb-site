@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <rect width="600" height="400" fill="#f9fcfa" />
+  
+  <!-- Background Elements -->
+  <circle cx="300" cy="200" r="150" fill="#11863A" opacity="0.05" />
+  
+  <!-- People Circle -->
+  <!-- Person 1 -->
+  <g transform="translate(200, 250)">
+    <circle cx="30" cy="0" r="25" fill="#4E2F8A" />
+    <path d="M0 80 Q30 30 60 80" fill="#4E2F8A" opacity="0.8" />
+  </g>
+  
+  <!-- Person 2 -->
+  <g transform="translate(340, 250)">
+    <circle cx="30" cy="0" r="25" fill="#11863A" />
+    <path d="M0 80 Q30 30 60 80" fill="#11863A" opacity="0.8" />
+  </g>
+  
+  <!-- Person 3 (Back) -->
+  <g transform="translate(270, 180)">
+    <circle cx="30" cy="0" r="25" fill="#F2D024" />
+    <path d="M0 80 Q30 30 60 80" fill="#F2D024" opacity="0.8" />
+  </g>
+  
+  <!-- Speech Bubbles -->
+  <path d="M200 150 L220 130 L250 130 L250 160 L220 160 Z" fill="#fff" stroke="#e3e8ef" />
+  <circle cx="235" cy="145" r="4" fill="#11863A" />
+  
+  <path d="M400 180 L380 160 L350 160 L350 190 L380 190 Z" fill="#fff" stroke="#e3e8ef" />
+  <rect x="360" y="172" width="20" height="4" fill="#4E2F8A" />
+  
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f4faf5" />
+      <stop offset="100%" stop-color="#e8f5f2" />
+    </linearGradient>
+    <linearGradient id="primary-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#11863A" />
+      <stop offset="100%" stop-color="#0c5e29" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bg-grad)" rx="20" />
+  
+  <!-- Decorative Blobs -->
+  <circle cx="100" cy="400" r="150" fill="#11863A" opacity="0.05" />
+  <circle cx="700" cy="100" r="120" fill="#4E2F8A" opacity="0.05" />
+  
+  <!-- Bank Building Abstract -->
+  <path d="M100 400 L100 200 L250 120 L400 200 L400 400 Z" fill="#fff" stroke="#e3e8ef" stroke-width="2" />
+  <rect x="140" y="250" width="60" height="80" fill="#e3e8ef" rx="4" />
+  <rect x="300" y="250" width="60" height="80" fill="#e3e8ef" rx="4" />
+  <rect x="220" y="300" width="60" height="100" fill="#11863A" opacity="0.1" />
+  
+  <!-- Growth Chart -->
+  <path d="M450 350 L520 300 L590 330 L680 200" stroke="#11863A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="680" cy="200" r="12" fill="#F2D024" />
+  
+  <!-- People -->
+  <!-- Person 1 (Staff) -->
+  <g transform="translate(280, 220)">
+    <circle cx="30" cy="30" r="25" fill="#4E2F8A" />
+    <path d="M5 120 C5 80 15 60 30 60 C45 60 55 80 55 120" fill="#4E2F8A" />
+  </g>
+  
+  <!-- Person 2 (Customer) -->
+  <g transform="translate(500, 240)">
+    <circle cx="30" cy="30" r="25" fill="#11863A" />
+    <path d="M5 120 C5 80 15 60 30 60 C45 60 55 80 55 120" fill="#11863A" />
+  </g>
+  
+  <!-- Coins/Elements -->
+  <circle cx="600" cy="150" r="20" fill="#F2D024" opacity="0.8" />
+  <circle cx="640" cy="120" r="15" fill="#F2D024" opacity="0.6" />
+  
+  <!-- Plant -->
+  <path d="M700 400 Q700 300 750 250" stroke="#11863A" stroke-width="4" fill="none" />
+  <path d="M750 250 Q780 220 750 200 Q720 220 750 250" fill="#11863A" />
+  <path d="M720 320 Q750 300 720 280 Q690 300 720 320" fill="#11863A" />
+
+</svg>

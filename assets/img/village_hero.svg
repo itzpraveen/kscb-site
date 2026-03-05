@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4FC3F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E1F5FE;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grassGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#66BB6A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#43A047;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#29B6F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0288D1;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="4" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="500" fill="url(#skyGradient)"/>
+  
+  <!-- Sun -->
+  <circle cx="700" cy="80" r="50" fill="#FFEB3B" opacity="0.9"/>
+  <circle cx="700" cy="80" r="65" fill="#FFF176" opacity="0.4"/>
+
+  <!-- Clouds -->
+  <path d="M100,100 Q120,80 150,100 T200,100 T250,100 V130 H100 Z" fill="#FFFFFF" opacity="0.8"/>
+  <path d="M500,150 Q530,120 580,150 T650,150 V180 H500 Z" fill="#FFFFFF" opacity="0.7"/>
+
+  <!-- Background Hills -->
+  <path d="M0,350 Q200,250 400,350 T800,300 V500 H0 Z" fill="#81C784"/>
+  
+  <!-- Foreground Hills -->
+  <path d="M0,500 L0,380 Q300,300 600,400 T800,380 V500 Z" fill="url(#grassGradient)"/>
+
+  <!-- River -->
+  <path d="M0,500 Q400,450 800,500" fill="url(#waterGradient)"/>
+  
+  <!-- Coconut Trees (Detailed) -->
+  <g transform="translate(50, 200) scale(0.8)">
+    <!-- Trunk -->
+    <path d="M45,250 Q60,150 50,50 L55,50 Q70,150 55,250 Z" fill="#795548"/>
+    <!-- Leaves -->
+    <g transform="translate(52, 50)">
+      <path d="M0,0 Q-40,-40 -80,10" stroke="#2E7D32" stroke-width="8" fill="none"/>
+      <path d="M0,0 Q40,-50 80,0" stroke="#2E7D32" stroke-width="8" fill="none"/>
+      <path d="M0,0 Q-60,10 -90,60" stroke="#2E7D32" stroke-width="8" fill="none"/>
+      <path d="M0,0 Q60,20 90,70" stroke="#2E7D32" stroke-width="8" fill="none"/>
+      <path d="M0,0 Q0,-60 10,-90" stroke="#2E7D32" stroke-width="8" fill="none"/>
+    </g>
+  </g>
+
+  <g transform="translate(700, 220) scale(0.9)">
+     <!-- Trunk -->
+    <path d="M45,250 Q30,150 50,50 L55,50 Q40,150 55,250 Z" fill="#795548"/>
+    <!-- Leaves -->
+    <g transform="translate(52, 50)">
+      <path d="M0,0 Q-40,-40 -80,10" stroke="#2E7D32" stroke-width="8" fill="none"/>
+      <path d="M0,0 Q40,-50 80,0" stroke="#2E7D32" stroke-width="8" fill="none"/>
+      <path d="M0,0 Q-60,10 -90,60" stroke="#2E7D32" stroke-width="8" fill="none"/>
+      <path d="M0,0 Q60,20 90,70" stroke="#2E7D32" stroke-width="8" fill="none"/>
+    </g>
+  </g>
+
+  <!-- Bank Building (Cartoon Style) -->
+  <g transform="translate(300, 280)" filter="url(#shadow)">
+    <!-- Main Structure -->
+    <rect x="0" y="40" width="200" height="120" fill="#FFF" stroke="#5D4037" stroke-width="2"/>
+    <!-- Roof (Kerala Style) -->
+    <path d="M-20,40 L100,-10 L220,40 L200,40 L100,0 L0,40 Z" fill="#D84315" stroke="#BF360C" stroke-width="2"/>
+    <path d="M-20,40 L0,40 L100,0 L200,40 L220,40" fill="none" stroke="#BF360C" stroke-width="2"/>
+    
+    <!-- Entrance -->
+    <rect x="70" y="90" width="60" height="70" fill="#EFEBE9"/>
+    <rect x="75" y="95" width="22" height="65" fill="#8D6E63" stroke="#5D4037"/> <!-- Door L -->
+    <rect x="103" y="95" width="22" height="65" fill="#8D6E63" stroke="#5D4037"/> <!-- Door R -->
+    
+    <!-- Steps -->
+    <rect x="60" y="160" width="80" height="10" fill="#BDBDBD"/>
+    <rect x="50" y="170" width="100" height="10" fill="#9E9E9E"/>
+
+    <!-- Windows -->
+    <rect x="20" y="70" width="30" height="40" fill="#B3E5FC" stroke="#0277BD" stroke-width="2"/>
+    <rect x="150" y="70" width="30" height="40" fill="#B3E5FC" stroke="#0277BD" stroke-width="2"/>
+
+    <!-- Signboard -->
+    <rect x="40" y="50" width="120" height="25" fill="#2E7D32" rx="5"/>
+    <text x="100" y="68" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="#FFF" text-anchor="middle">KSCB BANK</text>
+  </g>
+
+  <!-- People (Flat Cartoon Style) -->
+  <!-- Person 1 (Woman in Saree) -->
+  <g transform="translate(250, 420)">
+    <path d="M0,60 L10,60 L10,20 Q15,20 20,25 L25,50 L30,50 L25,20 Q25,10 15,10 L-5,10 Q-15,10 -15,20 L-10,50 L-5,50 L-10,25 Q-5,20 0,20 Z" fill="#E91E63"/> <!-- Saree Body -->
+    <circle cx="5" cy="5" r="8" fill="#D7CCC8"/> <!-- Head -->
+    <path d="M-10,60 Q5,70 20,60" fill="#E91E63"/> <!-- Saree Bottom -->
+  </g>
+
+  <!-- Person 2 (Man in Mundu) -->
+  <g transform="translate(550, 430)">
+    <rect x="-10" y="30" width="20" height="30" fill="#FFF" stroke="#EEE"/> <!-- Mundu -->
+    <rect x="-12" y="10" width="24" height="25" fill="#FFF9C4"/> <!-- Shirt -->
+    <circle cx="0" cy="5" r="8" fill="#8D6E63"/> <!-- Head -->
+    <path d="M-12,10 L-18,25 L-15,25 L-10,12" fill="#FFF9C4"/> <!-- Arm L -->
+    <path d="M12,10 L18,25 L15,25 L10,12" fill="#FFF9C4"/> <!-- Arm R -->
+  </g>
+
+</svg>

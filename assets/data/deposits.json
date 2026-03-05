@@ -5,6 +5,7 @@
         "en": "Fixed Deposit",
         "ml": "സ്ഥിര നിക്ഷേപം"
       },
+      "image": "assets/img/product_deposit.png",
       "description": {
         "en": "Earn up to 8.5% interest with guaranteed returns. Perfect for risk-free wealth creation.",
         "ml": "8.5% വരെ പലിശയും ഉറപ്പുള്ള വരുമാനവും. റിസ്ക് ഇല്ലാത്ത സമ്പത്ത് സൃഷ്ടിക്കാൻ മികച്ചത്."
@@ -17,7 +18,7 @@
           "Senior citizen benefits"
         ],
         "ml": [
-          "കാലാവധി: 6–60 മാസങ്ങൾ",
+          "காலാവധി: 6–60 മാസങ്ങൾ",
           "നിയമങ്ങൾ അനുസരിച്ച് മുൻകൂർ പിൻവലിക്കൽ",
           "ഓട്ടോ പുതുക്കൽ സൗകര്യം",
           "മുതിർന്ന പൗരന്മാർക്ക് പ്രത്യേക ആനുകൂല്യങ്ങൾ"
@@ -73,6 +74,7 @@
         "en": "Recurring Deposit",
         "ml": "ആവർത്തന നിക്ഷേപം"
       },
+      "image": "assets/img/deposit_recurring.png",
       "description": {
         "en": "Save as little as ₹50/month and watch it grow! Perfect for achieving your financial goals.",
         "ml": "പ്രതിമാസം വെറും ₹50 സേവ് ചെയ്ത് വളരുന്നത് കാണൂ! നിങ്ങളുടെ സാമ്പത്തിക ലക്ഷ്യങ്ങൾ നേടാൻ മികച്ചത്."
@@ -95,6 +97,7 @@
         "en": "Daily Deposit (Pigmy)",
         "ml": "പിഗ്മി നിക്ഷേപം (ദിവസേന)"
       },
+      "image": "assets/img/deposit_pigmy_collection.png",
       "description": {
         "en": "Door-to-door collection service! Save daily from just ₹50. We come to you!",
         "ml": "വീട്ടുവാതിൽക്കൽ പിരിവ് സേവനം! പ്രതിദിനം വെറും ₹50 മുതൽ സേവ് ചെയ്യൂ. ഞങ്ങൾ നിങ്ങളുടെ അടുത്തേക്ക് വരുന്നു!"
